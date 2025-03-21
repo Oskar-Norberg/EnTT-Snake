@@ -1,13 +1,9 @@
-
-#include <raylib.h>
-#include <entt.hpp>
-#include <iostream>
-
-#include "WindowProperties.h"
+#include "SnakeGame.h"
 
 int main()
 {
-    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
+    SnakeGame game;
+    game.Run();
     
     return 0;
 }

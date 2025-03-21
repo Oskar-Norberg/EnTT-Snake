@@ -28,8 +28,9 @@ add_executable(${PROJECT_NAME} main.cpp
         src/StateMachine.cpp
         src/State.cpp
         src/States/PlayingState.cpp
-        src/States/MainMenuState.cpp)
-
+        src/States/MainMenuState.cpp
+        include/SnakeGame.h
+        src/SnakeGame.cpp)
 
 
 target_link_libraries(${PROJECT_NAME}
