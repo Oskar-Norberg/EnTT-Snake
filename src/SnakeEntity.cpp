@@ -8,12 +8,10 @@
 #include "Components/PlayerInput.h"
 #include "Components/PlayerMovement.h"
 #include "Components/SpriteRenderer.h"
-#include "Components/Transform.h"
 
 namespace Snake
 {
     SnakeEntity::SnakeEntity(entt::registry* registry) : Entity(registry){
-        AddComponent<Components::Transform>(Vector2{0, 0}, 0.25f, 45.0f);
         AddComponent<Components::SpriteRenderer>();
         AddComponent<Components::PlayerInput>();
         AddComponent<Components::PlayerMovement>(0.2f);
@@ -25,11 +23,6 @@ namespace Snake
     }
 
     void SnakeEntity::Update(float deltaTime)
-    {
-        
-    }
-
-    void SnakeEntity::Render()
     {
         
     }

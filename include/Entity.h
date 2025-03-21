@@ -18,6 +18,14 @@ namespace Game
         explicit Entity(entt::registry* registry) : registry_(registry)
         {
             entity = registry_->create();
+
+            if (entity == entt::null)
+            {
+                throw std::runtime_error("Failed to create entity");
+            }
+            
+            // Add Transform component
+            AddComponent<Components::Transform>();
         }
         
         virtual ~Entity()
@@ -28,10 +36,7 @@ namespace Game
         template<typename T, typename... Args>
         void AddComponent(Args&&... args)
         {
-            T& component = registry_->emplace<T>(entity, std::forward<Args>(args)...);
-
-            if constexpr (std::is_same_v<T, Components::SpriteRenderer>)
-                sprite_renderer_ = &component;
+            registry_->emplace<T>(entity, std::forward<Args>(args)...);
         }
 
         template<typename T>
@@ -53,15 +58,22 @@ namespace Game
         }
 
         virtual void Update(float deltaTime) = 0;
-        virtual void Render() = 0;
+        
+        virtual void Render()
+        {
+            if (HasComponent<Components::SpriteRenderer>())
+            {
+                auto spriteRenderer = GetComponent<Components::SpriteRenderer>();
+                auto transform = GetComponent<Components::Transform>();
+                
+                spriteRenderer.Render(transform);
+            }
+        }
 
         void OnCollision(Collider* collider);
     private:
         entt::registry* registry_;
         entt::entity entity;
-
-        // TODO: Technical debt
-        Components::SpriteRenderer* sprite_renderer_;
     };
 }
 

@@ -18,7 +18,6 @@ namespace Snake
         ~SnakeEntity();
 
         void Update(float deltaTime) override;
-        void Render() override;
 
     private:
         entt::entity entity_;

@@ -14,7 +14,6 @@ namespace Game
     public:
         explicit Apple(entt::registry* registry, Vector2 position);
         void Update(float deltaTime) override;
-        void Render() override;
     private:
         Vector2 position_;
     };
