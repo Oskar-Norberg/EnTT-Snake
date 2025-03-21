@@ -9,7 +9,6 @@
 
 #include <unordered_map>
 
-
 namespace States
 {
     class State;
@@ -18,10 +17,7 @@ namespace States
     {
     public:
         explicit StateMachine(const std::vector<State*> &states);
-
-
         void SwitchState(const std::type_index& type);
-    
         void Tick();
     private:
         std::pmr::unordered_map<std::type_index, State*> state_map_;

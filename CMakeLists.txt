@@ -17,7 +17,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib_external)
 
-
 #Project Files
 add_executable(${PROJECT_NAME} main.cpp
         include/WindowProperties.h
@@ -30,8 +29,9 @@ add_executable(${PROJECT_NAME} main.cpp
         src/States/PlayingState.cpp
         src/States/MainMenuState.cpp
         include/SnakeGame.h
-        src/SnakeGame.cpp)
-
+        src/SnakeGame.cpp
+        include/Transform.h
+)
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE

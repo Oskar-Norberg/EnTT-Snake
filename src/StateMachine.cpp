@@ -3,10 +3,9 @@
 //
 
 #include "StateMachine.h"
+#include "State.h"
 
 #include <iostream>
-
-#include "State.h"
 
 namespace States
 {
