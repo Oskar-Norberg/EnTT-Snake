@@ -6,6 +6,7 @@
 #define SPRITERENDERER_H
 
 #include "raylib.h"
+#include "Transform.h"
 
 namespace Components
 {
@@ -13,11 +14,17 @@ namespace Components
     {
         SpriteRenderer()
         {
-            texture_ = LoadTexture("resources/snake.png");
+            // TODO: Is there any way to get rid of this ass-path?
+            texture_ = LoadTexture("../assets/builtin/textures/checkers.png");
         }
         ~SpriteRenderer()
         {
             
+        }
+
+        void Render(Component::Transform transform)
+        {
+            DrawTextureEx(texture_, transform.position, transform.rotation, transform.scale, WHITE);
         }
         
         Texture2D texture_;
