@@ -27,6 +27,24 @@ namespace Game
         {
             registry_->emplace<T>(entity, std::forward<Args>(args)...);
         }
+
+        template<typename T>
+        T& GetComponent()
+        {
+            return registry_->get<T>(entity);
+        }
+
+        template<typename T>
+        bool HasComponent()
+        {
+            return registry_->any_of<T>(entity);
+        }
+
+        template<typename T>
+        void RemoveComponent()
+        {
+            registry_->remove<T>(entity);
+        }
     private:
         entt::registry* registry_;
         entt::entity entity;
