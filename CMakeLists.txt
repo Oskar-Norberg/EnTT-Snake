@@ -20,7 +20,15 @@ FetchContent_MakeAvailable(raylib_external)
 
 #Project Files
 add_executable(${PROJECT_NAME} main.cpp
-        include/WindowProperties.h)
+        include/WindowProperties.h
+        include/StateMachine.h
+        include/State.h
+        include/States/PlayingState.h
+        include/States/MainMenuState.h
+        src/StateMachine.cpp
+        src/State.cpp
+        src/States/PlayingState.cpp
+        src/States/MainMenuState.cpp)
 
 
 
