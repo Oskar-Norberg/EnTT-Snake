@@ -4,10 +4,10 @@
 
 #ifndef STATEMACHINE_H
 #define STATEMACHINE_H
-#include <typeindex>
-#include <vector>
 
+#include <typeindex>
 #include <unordered_map>
+#include <vector>
 
 namespace States
 {
@@ -16,9 +16,13 @@ namespace States
     class StateMachine
     {
     public:
-        explicit StateMachine(const std::vector<State*> &states);
+        StateMachine() = default;
+        ~StateMachine() = default;
+
+        void AddState(State* state);
+        void AddStates(const std::vector<State*>& states);
         void SwitchState(const std::type_index& type);
-        void Tick();
+        void Update();
     private:
         std::pmr::unordered_map<std::type_index, State*> state_map_;
         void EnterState(State* state);

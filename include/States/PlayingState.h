@@ -5,6 +5,9 @@
 #ifndef PLAYINGSTATE_H
 #define PLAYINGSTATE_H
 
+#include <entt.hpp>
+
+#include "SnakeEntity.h"
 #include "State.h"
 
 namespace States
@@ -17,6 +20,10 @@ namespace States
         void Enter(StateMachine* state_machine_) override;
         void Tick(StateMachine* state_machine_) override;
         void Exit(StateMachine* state_machine_) override;
+        
+    private:
+        entt::registry registry_;
+        Snake::SnakeEntity snake_;
     };
 }
 

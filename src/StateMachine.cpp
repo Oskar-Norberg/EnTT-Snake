@@ -9,17 +9,18 @@
 
 namespace States
 {
-    StateMachine::StateMachine(const std::vector<State*> &states)
+    void StateMachine::AddState(State* state)
     {
-        for (State* state : states)
-        {
-            state_map_[typeid(*state)] = state;
-        }
-
-        current_state_ = nullptr;
+        state_map_[typeid(*state)] = state;
     }
 
-    void StateMachine::Tick(){
+    void StateMachine::AddStates(const std::vector<State*>& states)
+    {
+        for (auto state : states)
+            AddState(state);
+    }
+
+    void StateMachine::Update(){
         if (current_state_ == nullptr)
         {
             std::cout << "No state set!" << std::endl;

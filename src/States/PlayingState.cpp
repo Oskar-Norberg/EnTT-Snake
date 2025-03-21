@@ -7,10 +7,14 @@
 #include "StateMachine.h"
 #include <iostream>
 
+#include "Components/SpriteRenderer.h"
+#include "Components/Transform.h"
+
 namespace States
 {
-    PlayingState::PlayingState() : State()
+    PlayingState::PlayingState() : State(), registry_(), snake_(&registry_)
     {
+        
     }
 
     void PlayingState::Enter(StateMachine* state_machine_)
@@ -20,7 +24,15 @@ namespace States
 
     void PlayingState::Tick(StateMachine* state_machine_)
     {
-        std::cout << "Tick Playing State" << std::endl;
+        auto group = registry_.group<Component::Transform>(entt::get<Components::SpriteRenderer>);
+
+        for (auto entity : group)
+        {
+            auto& transform = group.get<Component::Transform>(entity);
+            auto& sprite_renderer = group.get<Components::SpriteRenderer>(entity);
+
+            sprite_renderer.Render(transform);
+        }
     }
 
     void PlayingState::Exit(StateMachine* state_machine_)

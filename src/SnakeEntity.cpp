@@ -18,6 +18,7 @@ namespace Snake
 
         entity_ = entity;
     }
+    
     SnakeEntity::~SnakeEntity(){
         registry_->destroy(entity_);
     }
