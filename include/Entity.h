@@ -45,6 +45,9 @@ namespace Game
         {
             registry_->remove<T>(entity);
         }
+
+        virtual void Update(float deltaTime) = 0;
+        virtual void Render() = 0;
     private:
         entt::registry* registry_;
         entt::entity entity;

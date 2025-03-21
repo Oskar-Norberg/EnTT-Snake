@@ -16,4 +16,14 @@ namespace Game
         AddComponent<Components::SpriteRenderer>();
         AddComponent<Components::BoxCollider>(Rectangle{0, 0, 0.25f, 0.25f});
     }
+
+    void Apple::Update(float deltaTime)
+    {
+        
+    }
+
+    void Apple::Render()
+    {
+        
+    }
 }

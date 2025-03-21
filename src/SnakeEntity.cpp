@@ -23,4 +23,15 @@ namespace Snake
     SnakeEntity::~SnakeEntity(){
         registry_->destroy(entity_);
     }
+
+    void SnakeEntity::Update(float deltaTime)
+    {
+        
+    }
+
+    void SnakeEntity::Render()
+    {
+        
+    }
+
 }

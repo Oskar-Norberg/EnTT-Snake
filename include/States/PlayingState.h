@@ -5,11 +5,14 @@
 #ifndef PLAYINGSTATE_H
 #define PLAYINGSTATE_H
 
+#include "State.h"
+
 #include <entt.hpp>
 
-#include "Apple.h"
+#include "Entity.h"
+
 #include "SnakeEntity.h"
-#include "State.h"
+#include "Apple.h"
 
 namespace States
 {
@@ -26,6 +29,7 @@ namespace States
         entt::registry registry_;
         Snake::SnakeEntity snake_;
         Game::Apple apple_;
+        std::vector<Game::Entity*> entities_;
 
         void HandleInput();
         void HandleMovement();
