@@ -7,6 +7,7 @@
 
 #include <entt.hpp>
 
+#include "Apple.h"
 #include "SnakeEntity.h"
 #include "State.h"
 
@@ -24,6 +25,7 @@ namespace States
     private:
         entt::registry registry_;
         Snake::SnakeEntity snake_;
+        Game::Apple apple_;
 
         void HandleCollisions();
     };

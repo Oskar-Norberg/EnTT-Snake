@@ -20,7 +20,7 @@ namespace Components
 
 namespace States
 {
-    PlayingState::PlayingState() : State(), registry_(), snake_(&registry_)
+    PlayingState::PlayingState() : State(), registry_(), snake_(&registry_), apple_(&registry_, Vector2{5, 5})
     {
         
     }

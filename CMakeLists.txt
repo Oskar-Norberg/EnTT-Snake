@@ -38,6 +38,8 @@ add_executable(${PROJECT_NAME} main.cpp
         include/Components/PlayerMovement.h
         include/Entity.h
         include/BoxCollider.h
+        include/Apple.h
+        src/Apple.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}

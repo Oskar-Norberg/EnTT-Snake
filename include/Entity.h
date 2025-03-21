@@ -4,18 +4,27 @@
 
 #ifndef ENTITY_H
 #define ENTITY_H
-#include "SnakeEntity.h"
+
+#include <entt.hpp>
 
 namespace Game
 {
-     class Entity
+    class Entity
     {
     public:
-        Entity() = default;
-        virtual ~Entity() = default;
+        explicit Entity(entt::registry* registry) : registry_(registry)
+        {
+            entity = registry_->create();
+        }
+        
+        virtual ~Entity()
+        {
+            registry_->destroy(entity);
+        }
 
          entt::entity GetEntity() const { return entity; }
-     private:
+     protected:
+         entt::registry* registry_;
          entt::entity entity;
     };
 }
