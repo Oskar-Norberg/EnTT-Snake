@@ -8,32 +8,23 @@
 #include <entt.hpp>
 #include <iostream>
 
-#include "Components/Collider.h"
-#include "Components/SpriteRenderer.h"
-#include "Components/Updateable.h"
+
+// Forward declarations
+struct Collider;
+
+namespace Components
+{
+    struct Updateable;
+}
 
 namespace Game
 {
     class Entity
     {
     public:
-        explicit Entity(entt::registry* registry) : registry_(registry), updateables_()
-        {
-            entity = registry_->create();
-
-            if (entity == entt::null)
-            {
-                throw std::runtime_error("Failed to create entity");
-            }
-            
-            // Add Transform component
-            AddComponent<Components::Transform>();
-        }
+        explicit Entity(entt::registry* registry);
         
-        virtual ~Entity()
-        {
-            registry_->destroy(entity);
-        }
+        virtual ~Entity();
 
         template<typename T, typename... Args>
         void AddComponent(Args&&... args)
@@ -65,28 +56,11 @@ namespace Game
             registry_->remove<T>(entity);
         }
 
-        virtual void Update(float deltaTime)
-        {
-            for (auto updateable : updateables_)
-                updateable->Update();
-        }
+        virtual void Update(float deltaTime);
         
-        virtual void Render()
-        {
-            if (HasComponent<Components::SpriteRenderer>())
-            {
-                auto spriteRenderer = GetComponent<Components::SpriteRenderer>();
-                auto transform = GetComponent<Components::Transform>();
+        virtual void Render();
 
-                // shits being copied
-                spriteRenderer->Render(*transform);
-            }
-        }
-
-        Entity* GetEntity()
-        {
-            return this;
-        }
+        Entity* GetEntity();
 
         void OnCollision(Collider* collider);
     private:

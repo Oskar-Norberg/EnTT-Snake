@@ -43,6 +43,7 @@ add_executable(${PROJECT_NAME} main.cpp
         include/Components/Collider.h
         include/Components/Updateable.h
         include/Components/Component.h
+        src/Entity.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
