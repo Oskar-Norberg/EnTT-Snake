@@ -19,7 +19,8 @@ FetchContent_MakeAvailable(raylib_external)
 
 
 #Project Files
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp
+        include/WindowProperties.h)
 
 
 
