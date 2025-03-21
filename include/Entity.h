@@ -7,6 +7,8 @@
 
 #include <entt.hpp>
 
+#include "Components/Collider.h"
+
 namespace Game
 {
     class Entity
@@ -48,6 +50,8 @@ namespace Game
 
         virtual void Update(float deltaTime) = 0;
         virtual void Render() = 0;
+
+        void OnCollision(Collider* collider);
     private:
         entt::registry* registry_;
         entt::entity entity;

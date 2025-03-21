@@ -40,6 +40,7 @@ add_executable(${PROJECT_NAME} main.cpp
         include/BoxCollider.h
         include/Apple.h
         src/Apple.cpp
+        include/Components/Collider.h
 )
 
 target_link_libraries(${PROJECT_NAME}
