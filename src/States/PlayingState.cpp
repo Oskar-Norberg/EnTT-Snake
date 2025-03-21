@@ -22,7 +22,7 @@ namespace States
 {
     PlayingState::PlayingState() : State(), registry_(), snake_(&registry_), apple_(&registry_, Vector2{5, 5})
     {
-        
+        entities_ = {&snake_, &apple_};
     }
 
     void PlayingState::Enter(StateMachine* state_machine_)
@@ -32,10 +32,16 @@ namespace States
 
     void PlayingState::Tick(StateMachine* state_machine_)
     {
-        HandleInput();
-        HandleMovement();
-        HandleCollisions();
-        Render();
+        for (auto entity : entities_)
+        {
+            entity->Update(GetFrameTime());
+            entity->Render();
+        }
+        
+        // HandleInput();
+        // HandleMovement();
+        // HandleCollisions();
+        // Render();
     }
 
     void PlayingState::Exit(StateMachine* state_machine_)

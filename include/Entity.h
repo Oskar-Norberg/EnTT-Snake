@@ -8,6 +8,7 @@
 #include <entt.hpp>
 
 #include "Components/Collider.h"
+#include "Components/SpriteRenderer.h"
 
 namespace Game
 {
@@ -27,7 +28,10 @@ namespace Game
         template<typename T, typename... Args>
         void AddComponent(Args&&... args)
         {
-            registry_->emplace<T>(entity, std::forward<Args>(args)...);
+            T& component = registry_->emplace<T>(entity, std::forward<Args>(args)...);
+
+            if constexpr (std::is_same_v<T, Components::SpriteRenderer>)
+                sprite_renderer_ = &component;
         }
 
         template<typename T>
@@ -55,6 +59,9 @@ namespace Game
     private:
         entt::registry* registry_;
         entt::entity entity;
+
+        // TODO: Technical debt
+        Components::SpriteRenderer* sprite_renderer_;
     };
 }
 
