@@ -30,7 +30,7 @@ add_executable(${PROJECT_NAME} main.cpp
         src/States/MainMenuState.cpp
         include/SnakeGame.h
         src/SnakeGame.cpp
-        include/Transform.h
+        include/Components/Transform.h
 )
 
 target_link_libraries(${PROJECT_NAME}
