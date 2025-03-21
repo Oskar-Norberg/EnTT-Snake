@@ -34,6 +34,8 @@ add_executable(${PROJECT_NAME} main.cpp
         include/Components/SpriteRenderer.h
         include/SnakeEntity.h
         src/SnakeEntity.cpp
+        include/Components/PlayerInput.h
+        include/Components/PlayerMovement.h
 )
 
 target_link_libraries(${PROJECT_NAME}
