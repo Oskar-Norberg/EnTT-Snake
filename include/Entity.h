@@ -6,16 +6,18 @@
 #define ENTITY_H
 
 #include <entt.hpp>
+#include <iostream>
 
 #include "Components/Collider.h"
 #include "Components/SpriteRenderer.h"
+#include "Components/Updateable.h"
 
 namespace Game
 {
     class Entity
     {
     public:
-        explicit Entity(entt::registry* registry) : registry_(registry)
+        explicit Entity(entt::registry* registry) : registry_(registry), updateables_()
         {
             entity = registry_->create();
 
@@ -36,13 +38,19 @@ namespace Game
         template<typename T, typename... Args>
         void AddComponent(Args&&... args)
         {
-            registry_->emplace<T>(entity, std::forward<Args>(args)...);
+            auto* component = &registry_->emplace<T>(entity, std::forward<Args>(args)...);
+            
+            if (component == nullptr)
+                assert("Failed to add component");
+
+            if constexpr (std::is_base_of_v<Components::Updateable, T>)
+                updateables_.push_back(component);
         }
 
         template<typename T>
-        T& GetComponent()
+        T* GetComponent()
         {
-            return registry_->get<T>(entity);
+            return &registry_->get<T>(entity);
         }
 
         template<typename T>
@@ -57,7 +65,11 @@ namespace Game
             registry_->remove<T>(entity);
         }
 
-        virtual void Update(float deltaTime) = 0;
+        virtual void Update(float deltaTime)
+        {
+            for (auto updateable : updateables_)
+                updateable->Update();
+        }
         
         virtual void Render()
         {
@@ -65,13 +77,21 @@ namespace Game
             {
                 auto spriteRenderer = GetComponent<Components::SpriteRenderer>();
                 auto transform = GetComponent<Components::Transform>();
-                
-                spriteRenderer.Render(transform);
+
+                // shits being copied
+                spriteRenderer->Render(*transform);
             }
+        }
+
+        Entity* GetEntity()
+        {
+            return this;
         }
 
         void OnCollision(Collider* collider);
     private:
+        // TODO: Slight technical debt
+        std::vector<Components::Updateable*> updateables_;
         entt::registry* registry_;
         entt::entity entity;
     };

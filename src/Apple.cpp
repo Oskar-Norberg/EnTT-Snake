@@ -6,7 +6,6 @@
 
 #include "BoxCollider.h"
 #include "Components/SpriteRenderer.h"
-#include "Components/Transform.h"
 
 namespace Game
 {
@@ -14,10 +13,5 @@ namespace Game
     {
         AddComponent<Components::SpriteRenderer>();
         AddComponent<Components::BoxCollider>(Rectangle{0, 0, 0.25f, 0.25f});
-    }
-
-    void Apple::Update(float deltaTime)
-    {
-        
     }
 }

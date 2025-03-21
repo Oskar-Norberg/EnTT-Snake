@@ -16,9 +16,6 @@ namespace Snake
     public:
         explicit SnakeEntity(entt::registry* registry);
         ~SnakeEntity();
-
-        void Update(float deltaTime) override;
-
     private:
         entt::entity entity_;
         entt::registry* registry_;

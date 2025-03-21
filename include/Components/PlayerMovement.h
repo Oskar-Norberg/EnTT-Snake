@@ -4,25 +4,38 @@
 
 #ifndef PLAYERMOVEMENT_H
 #define PLAYERMOVEMENT_H
-#include <iostream>
 
+#include "Component.h"
 #include "PlayerInput.h"
 #include "Transform.h"
 
 namespace Components
 {
-    struct PlayerMovement
+    struct PlayerMovement : public Component, public Updateable
     {
-        PlayerMovement() : speed_(1.0f) {}
-        explicit PlayerMovement(const float speed) : speed_(speed) {}
-
-        void Update(const PlayerInput& playerInput, Transform& transform) const
+        explicit PlayerMovement(entt::registry* registry, Game::Entity* entity, const float speed) :
+        Component(registry, entity),
+        speed_(speed),
+        transform_(entity->GetComponent<Transform>()),
+        playerInput_(entity->GetComponent<PlayerInput>())
         {
-            transform.position.x += playerInput.direction_.x * speed_;
-            transform.position.y += playerInput.direction_.y * speed_;
+        }
+        
+        PlayerMovement(entt::registry* registry, Game::Entity* entity) : PlayerMovement(registry, entity, 1.0f)
+        {
+        }
+
+        void Update() override
+        {
+            transform_->position.x += playerInput_->direction_.x * speed_;
+            transform_->position.y += playerInput_->direction_.y * speed_;
         }
 
         float speed_;
+
+    private:
+        Transform* transform_;
+        PlayerInput* playerInput_;
     };
 }
 

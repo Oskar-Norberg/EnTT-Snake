@@ -7,16 +7,27 @@
 
 #include <raylib.h>
 
+#include "Component.h"
 #include "raymath.h"
+#include "Updateable.h"
 
 namespace Components
 {
-    struct PlayerInput
+    struct PlayerInput : public Component, public Updateable
     {
-        PlayerInput() : up_key_(KEY_W), down_key_(KEY_S), left_key_(KEY_A), right_key_(KEY_D), direction_() {}
-        PlayerInput(int up_key, int down_key, int left_key, int right_key) : up_key_(up_key), down_key_(down_key), left_key_(left_key), right_key_(right_key), direction_() {}
+        PlayerInput(entt::registry* registry, Game::Entity* entity, int up_key, int down_key, int left_key, int right_key)
+        : up_key_(up_key),
+        down_key_(down_key),
+        left_key_(left_key),
+        right_key_(right_key),
+        direction_(),
+        Component(registry, entity)
+        {}
 
-        void Poll()
+        PlayerInput(entt::registry* registry, Game::Entity* entity) : PlayerInput(registry, entity, KEY_W, KEY_S, KEY_A, KEY_D)
+        {}
+
+        void Update() override
         {
             direction_ = {0.0f, 0.0f};
             
