@@ -11,10 +11,10 @@ namespace Components
     struct Component
     {
     public:
-        Component(entt::registry* registry, entt::entity entity) : registry_(registry), entity_(entity) {}
+        Component(entt::registry* registry, Game::Entity* entity) : registry_(registry), entity_(entity) {}
     protected:
         entt::registry* registry_;
-        entt::entity entity_;
+        Game::Entity* entity_;
     };
 }
 
