@@ -10,9 +10,9 @@
 
 namespace Components
 {
-    struct SpriteRenderer
+    struct SpriteRenderer : public Component
     {
-        SpriteRenderer()
+        SpriteRenderer(Game::Entity* entity) : Component(entity)
         {
             // TODO: Is there any way to get rid of this ass-path?
             texture_ = LoadTexture("../assets/builtin/textures/checkers.png");

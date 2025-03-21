@@ -9,6 +9,11 @@
 #include <iostream>
 
 
+namespace Components
+{
+    struct Component;
+}
+
 // Forward declarations
 struct Collider;
 
@@ -29,7 +34,10 @@ namespace Game
         template<typename T, typename... Args>
         void AddComponent(Args&&... args)
         {
-            auto* component = &registry_->emplace<T>(entity, std::forward<Args>(args)...);
+            if constexpr (!std::is_base_of_v<Components::Component, T>)
+                throw std::invalid_argument("Type T must inherit from Component");
+            
+            auto* component = &registry_->emplace<T>(entity, this, std::forward<Args>(args)...);
             
             if (component == nullptr)
                 assert("Failed to add component");

@@ -4,15 +4,16 @@
 
 #ifndef BOXCOLLIDER_H
 #define BOXCOLLIDER_H
-#include <iostream>
+
 #include <vector>
 
 #include "raylib.h"
+#include "Components/Component.h"
 
 namespace Components{
-    struct BoxCollider
+    struct BoxCollider : public Component
     {
-        explicit BoxCollider(Rectangle rectangle) : collider(rectangle) {}
+        explicit BoxCollider(Game::Entity* entity, Rectangle rectangle) : collider(rectangle), Component(entity) {}
         Rectangle collider;
 
         // TODO: this function is going to be the slowest thing ever

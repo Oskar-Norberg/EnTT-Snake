@@ -13,15 +13,15 @@ namespace Components
 {
     struct PlayerMovement : public Component, public Updateable
     {
-        explicit PlayerMovement(entt::registry* registry, Game::Entity* entity, const float speed) :
-        Component(registry, entity),
+        explicit PlayerMovement(Game::Entity* entity, const float speed) :
+        Component(entity),
         speed_(speed),
         transform_(entity->GetComponent<Transform>()),
         playerInput_(entity->GetComponent<PlayerInput>())
         {
         }
         
-        PlayerMovement(entt::registry* registry, Game::Entity* entity) : PlayerMovement(registry, entity, 1.0f)
+        PlayerMovement(Game::Entity* entity) : PlayerMovement(entity, 1.0f)
         {
         }
 
