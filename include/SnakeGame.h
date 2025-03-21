@@ -4,6 +4,9 @@
 
 #ifndef SNAKEGAME_H
 #define SNAKEGAME_H
+#include <vector>
+
+#include "StateMachine.h"
 
 namespace Snake
 {
@@ -15,6 +18,10 @@ namespace Snake
         ~SnakeGame();
     
         void Run();
+        
+    private:
+        std::vector<States::State*> states_;
+        States::StateMachine stateMachine_;
     };
 }
 
