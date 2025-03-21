@@ -4,17 +4,20 @@
 
 #include "State.h"
 
-State::State(){
-}
+namespace States
+{
+    State::State(){
+    }
     
-void State::Enter(StateMachine* state_machine_){
+    void State::Enter(StateMachine* state_machine_){
 
-}
+    }
 
-void State::Tick(StateMachine* state_machine_){
+    void State::Tick(StateMachine* state_machine_){
 
-}
+    }
 
-void State::Exit(StateMachine* state_machine_){
+    void State::Exit(StateMachine* state_machine_){
 
+    }
 }

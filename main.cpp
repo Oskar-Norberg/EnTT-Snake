@@ -2,7 +2,7 @@
 
 int main()
 {
-    SnakeGame game;
+    Snake::SnakeGame game;
     game.Run();
     
     return 0;

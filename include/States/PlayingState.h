@@ -7,14 +7,17 @@
 
 #include "State.h"
 
-class PlayingState : public State
+namespace States
 {
-public:
-    PlayingState();
+    class PlayingState : public State
+    {
+    public:
+        PlayingState();
     
-    void Enter(StateMachine* state_machine_) override;
-    void Tick(StateMachine* state_machine_) override;
-    void Exit(StateMachine* state_machine_) override;
-};
+        void Enter(StateMachine* state_machine_) override;
+        void Tick(StateMachine* state_machine_) override;
+        void Exit(StateMachine* state_machine_) override;
+    };
+}
 
 #endif //PLAYINGSTATE_H

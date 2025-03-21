@@ -5,13 +5,17 @@
 #ifndef SNAKEGAME_H
 #define SNAKEGAME_H
 
-class SnakeGame
+namespace Snake
 {
-public:
-    SnakeGame();
-    ~SnakeGame();
+
+    class SnakeGame
+    {
+    public:
+        SnakeGame();
+        ~SnakeGame();
     
-    void Run();
-};
+        void Run();
+    };
+}
 
 #endif //SNAKEGAME_H

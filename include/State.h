@@ -6,14 +6,17 @@
 #define STATE_H
 #include "StateMachine.h"
 
-class State
+namespace States
 {
-public:
-    State();
+    class State
+    {
+    public:
+        State();
     
-    virtual void Enter(StateMachine* state_machine_) = 0;
-    virtual void Tick(StateMachine* state_machine_) = 0;
-    virtual void Exit(StateMachine* state_machine_) = 0;
-};
+        virtual void Enter(StateMachine* state_machine_) = 0;
+        virtual void Tick(StateMachine* state_machine_) = 0;
+        virtual void Exit(StateMachine* state_machine_) = 0;
+    };
+}
 
 #endif //STATE_H

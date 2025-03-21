@@ -6,21 +6,24 @@
 
 #include <iostream>
 
-MainMenuState::MainMenuState()
+namespace States
 {
-}
+    MainMenuState::MainMenuState()
+    {
+    }
 
-void MainMenuState::Enter(StateMachine* state_machine_)
-{
-    std::cout << "Enter Main Menu State" << std::endl;
-}
+    void MainMenuState::Enter(StateMachine* state_machine_)
+    {
+        std::cout << "Enter Main Menu State" << std::endl;
+    }
 
-void MainMenuState::Tick(StateMachine* state_machine_)
-{
-    std::cout << "Tick Main Menu State" << std::endl;
-}
+    void MainMenuState::Tick(StateMachine* state_machine_)
+    {
+        std::cout << "Tick Main Menu State" << std::endl;
+    }
 
-void MainMenuState::Exit(StateMachine* state_machine_)
-{
-    std::cout << "Exit Main Menu State" << std::endl;
+    void MainMenuState::Exit(StateMachine* state_machine_)
+    {
+        std::cout << "Exit Main Menu State" << std::endl;
+    }
 }

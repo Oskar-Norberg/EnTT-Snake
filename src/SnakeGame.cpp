@@ -7,24 +7,27 @@
 #include "WindowProperties.h"
 #include <raylib.h>
 
-SnakeGame::SnakeGame()
+namespace Snake
 {
-}
-
-SnakeGame::~SnakeGame()
-{
-}
-
-void SnakeGame::Run()
-{
-    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
-    
-    while (!WindowShouldClose())
+    SnakeGame::SnakeGame()
     {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        EndDrawing();
     }
+
+    SnakeGame::~SnakeGame()
+    {
+    }
+
+    void SnakeGame::Run()
+    {
+        InitWindow(Window::WINDOW_WIDTH, Window::WINDOW_HEIGHT, Window::WINDOW_TITLE);
     
-    CloseWindow();
+        while (!WindowShouldClose())
+        {
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
+            EndDrawing();
+        }
+    
+        CloseWindow();
+    }
 }
