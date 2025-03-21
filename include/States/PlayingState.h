@@ -27,7 +27,10 @@ namespace States
         Snake::SnakeEntity snake_;
         Game::Apple apple_;
 
+        void HandleInput();
+        void HandleMovement();
         void HandleCollisions();
+        void Render();
     };
 }
 

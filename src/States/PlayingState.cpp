@@ -32,7 +32,19 @@ namespace States
 
     void PlayingState::Tick(StateMachine* state_machine_)
     {
-        // Input handling
+        HandleInput();
+        HandleMovement();
+        HandleCollisions();
+        Render();
+    }
+
+    void PlayingState::Exit(StateMachine* state_machine_)
+    {
+        std::cout << "Exit Playing State" << std::endl;
+    }
+
+    void PlayingState::HandleInput()
+    {
         auto inputGroup = registry_.group<Components::PlayerInput>();
 
         for (auto entity : inputGroup)
@@ -40,8 +52,10 @@ namespace States
             auto& entityPlayerInput = inputGroup.get<Components::PlayerInput>(entity);
             entityPlayerInput.Poll();
         }
+    }
 
-        // Movement
+    void PlayingState::HandleMovement()
+    {
         auto movementGroup = registry_.group<Components::PlayerMovement>(entt::get<Components::PlayerInput, Components::Transform>);
 
         for (auto entity : movementGroup)
@@ -52,27 +66,9 @@ namespace States
 
             playerMovement.Update(playerInput, transform);
         }
-
-        // Collision
-        HandleCollisions();
-        
-        // Rendering
-        auto renderingGroup = registry_.group<Components::Transform>(entt::get<Components::SpriteRenderer>);
-
-        for (auto entity : renderingGroup)
-        {
-            auto& transform = renderingGroup.get<Components::Transform>(entity);
-            auto& sprite_renderer = renderingGroup.get<Components::SpriteRenderer>(entity);
-
-            sprite_renderer.Render(transform);
-        }
     }
 
-    void PlayingState::Exit(StateMachine* state_machine_)
-    {
-        std::cout << "Exit Playing State" << std::endl;
-    }
-
+    // Terrible, terrible function.
     void PlayingState::HandleCollisions()
     {
         auto boxColliderGroup = registry_.group<Components::BoxCollider>(entt::get<Components::Transform>);
@@ -94,4 +90,16 @@ namespace States
         }
     }
 
+    void PlayingState::Render()
+    {
+        auto renderingGroup = registry_.group<Components::Transform>(entt::get<Components::SpriteRenderer>);
+
+        for (auto entity : renderingGroup)
+        {
+            auto& transform = renderingGroup.get<Components::Transform>(entity);
+            auto& sprite_renderer = renderingGroup.get<Components::SpriteRenderer>(entity);
+
+            sprite_renderer.Render(transform);
+        }
+    }
 }
