@@ -41,6 +41,8 @@ add_executable(${PROJECT_NAME} main.cpp
         include/Apple.h
         src/Apple.cpp
         include/Components/Collider.h
+        include/Components/Updateable.h
+        include/Components/Component.h
 )
 
 target_link_libraries(${PROJECT_NAME}
