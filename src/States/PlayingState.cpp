@@ -7,10 +7,16 @@
 #include "StateMachine.h"
 #include <iostream>
 
+#include "BoxCollider.h"
 #include "Components/PlayerInput.h"
 #include "Components/PlayerMovement.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Transform.h"
+
+namespace Components
+{
+    struct BoxCollider;
+}
 
 namespace States
 {
@@ -46,6 +52,9 @@ namespace States
 
             playerMovement.Update(playerInput, transform);
         }
+
+        // Collision
+        HandleCollisions();
         
         // Rendering
         auto renderingGroup = registry_.group<Components::Transform>(entt::get<Components::SpriteRenderer>);
@@ -63,4 +72,26 @@ namespace States
     {
         std::cout << "Exit Playing State" << std::endl;
     }
+
+    void PlayingState::HandleCollisions()
+    {
+        auto boxColliderGroup = registry_.group<Components::BoxCollider>(entt::get<Components::Transform>);
+        std::vector<Components::BoxCollider> boxColliders;
+        for (auto entity : boxColliderGroup)
+        {
+            auto& boxCollider = boxColliderGroup.get<Components::BoxCollider>(entity);
+            boxColliders.push_back(boxCollider);
+        }
+
+        for (auto& boxCollider : boxColliders)
+        {
+            std::vector<Components::BoxCollider> collisions = boxCollider.CheckForCollisions(boxColliders);
+
+            for (auto& collision : collisions)
+            {
+                std::cout << "Collision detected" << std::endl;
+            }
+        }
+    }
+
 }

@@ -4,6 +4,7 @@
 
 #include "SnakeEntity.h"
 
+#include "BoxCollider.h"
 #include "Components/PlayerInput.h"
 #include "Components/PlayerMovement.h"
 #include "Components/SpriteRenderer.h"
@@ -19,6 +20,7 @@ namespace Snake
         registry_->emplace<Components::SpriteRenderer>(entity);
         registry_->emplace<Components::PlayerInput>(entity);
         registry_->emplace<Components::PlayerMovement>(entity, 0.2f);
+        registry->emplace<Components::BoxCollider>(entity, Rectangle{0, 0, 0.25f, 0.25f});
 
         entity_ = entity;
     }

@@ -24,6 +24,8 @@ namespace States
     private:
         entt::registry registry_;
         Snake::SnakeEntity snake_;
+
+        void HandleCollisions();
     };
 }
 
