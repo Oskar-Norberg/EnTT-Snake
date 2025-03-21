@@ -4,6 +4,8 @@
 
 #include "SnakeEntity.h"
 
+#include "Components/PlayerInput.h"
+#include "Components/PlayerMovement.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Transform.h"
 
@@ -13,8 +15,10 @@ namespace Snake
         registry_ = registry;
 
         auto entity = registry_->create();
-        registry_->emplace<Component::Transform>(entity);
+        registry_->emplace<Components::Transform>(entity, Vector2{0, 0}, 0.25f, 45.0f);
         registry_->emplace<Components::SpriteRenderer>(entity);
+        registry_->emplace<Components::PlayerInput>(entity);
+        registry_->emplace<Components::PlayerMovement>(entity, 0.2f);
 
         entity_ = entity;
     }

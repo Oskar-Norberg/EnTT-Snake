@@ -7,6 +7,8 @@
 #include "StateMachine.h"
 #include <iostream>
 
+#include "Components/PlayerInput.h"
+#include "Components/PlayerMovement.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Transform.h"
 
@@ -24,12 +26,34 @@ namespace States
 
     void PlayingState::Tick(StateMachine* state_machine_)
     {
-        auto group = registry_.group<Component::Transform>(entt::get<Components::SpriteRenderer>);
+        // Input handling
+        auto inputGroup = registry_.group<Components::PlayerInput>();
 
-        for (auto entity : group)
+        for (auto entity : inputGroup)
         {
-            auto& transform = group.get<Component::Transform>(entity);
-            auto& sprite_renderer = group.get<Components::SpriteRenderer>(entity);
+            auto& entityPlayerInput = inputGroup.get<Components::PlayerInput>(entity);
+            entityPlayerInput.Poll();
+        }
+
+        // Movement
+        auto movementGroup = registry_.group<Components::PlayerMovement>(entt::get<Components::PlayerInput, Components::Transform>);
+
+        for (auto entity : movementGroup)
+        {
+            auto& playerInput = movementGroup.get<Components::PlayerInput>(entity);
+            auto& playerMovement = movementGroup.get<Components::PlayerMovement>(entity);
+            auto& transform = movementGroup.get<Components::Transform>(entity);
+
+            playerMovement.Update(playerInput, transform);
+        }
+        
+        // Rendering
+        auto renderingGroup = registry_.group<Components::Transform>(entt::get<Components::SpriteRenderer>);
+
+        for (auto entity : renderingGroup)
+        {
+            auto& transform = renderingGroup.get<Components::Transform>(entity);
+            auto& sprite_renderer = renderingGroup.get<Components::SpriteRenderer>(entity);
 
             sprite_renderer.Render(transform);
         }

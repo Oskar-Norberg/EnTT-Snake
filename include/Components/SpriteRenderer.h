@@ -22,7 +22,7 @@ namespace Components
             
         }
 
-        void Render(Component::Transform transform)
+        void Render(Transform transform)
         {
             DrawTextureEx(texture_, transform.position, transform.rotation, transform.scale, WHITE);
         }

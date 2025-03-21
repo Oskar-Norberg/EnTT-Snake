@@ -6,7 +6,7 @@
 #define TRANSFORM_H
 #include "raylib.h"
 
-namespace Component
+namespace Components
 {
     struct Transform
     {
