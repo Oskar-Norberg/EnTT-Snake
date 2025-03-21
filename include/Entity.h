@@ -22,10 +22,14 @@ namespace Game
             registry_->destroy(entity);
         }
 
-         entt::entity GetEntity() const { return entity; }
-     protected:
-         entt::registry* registry_;
-         entt::entity entity;
+        template<typename T, typename... Args>
+        void AddComponent(Args&&... args)
+        {
+            registry_->emplace<T>(entity, std::forward<Args>(args)...);
+        }
+    private:
+        entt::registry* registry_;
+        entt::entity entity;
     };
 }
 

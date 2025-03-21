@@ -13,13 +13,11 @@
 namespace Snake
 {
     SnakeEntity::SnakeEntity(entt::registry* registry) : Entity(registry){
-        registry->emplace<Components::Transform>(entity, Vector2{0, 0}, 0.25f, 45.0f);
-        registry->emplace<Components::SpriteRenderer>(entity);
-        registry->emplace<Components::PlayerInput>(entity);
-        registry->emplace<Components::PlayerMovement>(entity, 0.2f);
-        registry->emplace<Components::BoxCollider>(entity, Rectangle{0, 0, 0.25f, 0.25f});
-
-        entity_ = entity;
+        AddComponent<Components::Transform>(Vector2{0, 0}, 0.25f, 45.0f);
+        AddComponent<Components::SpriteRenderer>();
+        AddComponent<Components::PlayerInput>();
+        AddComponent<Components::PlayerMovement>(0.2f);
+        AddComponent<Components::BoxCollider>(Rectangle{0, 0, 0.25f, 0.25f});
     }
     
     SnakeEntity::~SnakeEntity(){

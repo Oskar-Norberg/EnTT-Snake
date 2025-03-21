@@ -12,8 +12,8 @@ namespace Game
 {
     Apple::Apple(entt::registry* registry, Vector2 position) : position_(position), Entity(registry)
     {
-        registry->emplace<Components::Transform>(entity, Vector2{0, 0}, 0.25f, 45.0f);
-        registry->emplace<Components::SpriteRenderer>(entity);
-        registry->emplace<Components::BoxCollider>(entity, Rectangle{0, 0, 0.25f, 0.25f});
+        AddComponent<Components::Transform>(Vector2{0, 0}, 0.25f, 45.0f);
+        AddComponent<Components::SpriteRenderer>();
+        AddComponent<Components::BoxCollider>(Rectangle{0, 0, 0.25f, 0.25f});
     }
 }
