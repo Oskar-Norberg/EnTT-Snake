@@ -36,6 +36,7 @@ add_executable(${PROJECT_NAME} main.cpp
         src/SnakeEntity.cpp
         include/Components/PlayerInput.h
         include/Components/PlayerMovement.h
+        include/Entity.h
 )
 
 target_link_libraries(${PROJECT_NAME}

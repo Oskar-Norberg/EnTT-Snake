@@ -7,9 +7,11 @@
 
 #include <entt.hpp>
 
+#include "Entity.h"
+
 namespace Snake
 {
-    class SnakeEntity
+    class SnakeEntity : public Game::Entity
     {
     public:
         explicit SnakeEntity(entt::registry* registry);
