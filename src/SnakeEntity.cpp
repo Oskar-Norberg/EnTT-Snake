@@ -4,9 +4,9 @@
 
 #include "SnakeEntity.h"
 
-#include "../include/Components/Engine/BoxCollider.h"
+#include "Components/Engine/BoxCollider.h"
 #include "Components/Engine/PlayerInput.h"
-#include "../include/Components/CustomComponent/PlayerMovement.h"
+#include "Components/CustomComponent/PlayerMovement.h"
 #include "Components/Engine/SpriteRenderer.h"
 
 namespace Snake

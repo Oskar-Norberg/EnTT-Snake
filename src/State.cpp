@@ -4,6 +4,7 @@
 
 #include "State.h"
 
+#include "Components/Engine/PlayerInput.h"
 #include "Components/Engine/SpriteRenderer.h"
 #include "Components/Engine/Transform.h"
 
@@ -15,33 +16,19 @@ namespace States
 
     void State::Tick(StateMachine* state_machine_){
         HandleInput();
-        HandleMovement();
         HandleCollisions();
         HandleScriptables();
         Render();
     }
 
     void State::HandleInput(){
-        // auto inputGroup = registry_.group<Components::PlayerInput>();
-        //
-        // for (auto entity : inputGroup)
-        // {
-        //     auto& entityPlayerInput = inputGroup.get<Components::PlayerInput>(entity);
-        //     entityPlayerInput.Poll();
-        // }
-    }
-    
-    void State::HandleMovement(){
-        // auto movementGroup = registry_.group<Components::PlayerMovement>(entt::get<Components::PlayerInput, Components::Transform>);
-        //
-        // for (auto entity : movementGroup)
-        // {
-        //     auto& playerInput = movementGroup.get<Components::PlayerInput>(entity);
-        //     auto& playerMovement = movementGroup.get<Components::PlayerMovement>(entity);
-        //     auto& transform = movementGroup.get<Components::Transform>(entity);
-        //
-        //     playerMovement.Update(playerInput, transform);
-        // }
+        auto inputGroup = registry_.group<Components::PlayerInput>();
+        
+        for (auto entity : inputGroup)
+        {
+            auto& entityPlayerInput = inputGroup.get<Components::PlayerInput>(entity);
+            entityPlayerInput.Poll();
+        }
     }
     
     void State::HandleCollisions(){
@@ -67,7 +54,13 @@ namespace States
     }
     
     void State::HandleScriptables(){
-        // TODO: handle scriptables
+        auto customGroup = registry_.group<Components_Custom::CustomComponent>();
+        
+        for (auto entity : customGroup)
+        {
+            auto& transform = customGroup.get<Components_Custom::CustomComponent>(entity);
+            transform.Update(GetFrameTime());
+        }
     }
     
     void State::Render(){

@@ -6,7 +6,6 @@
 
 #include "Components/Engine/Transform.h"
 
-
 namespace Game
 {
     Entity::Entity(entt::registry* registry) : registry_(registry)

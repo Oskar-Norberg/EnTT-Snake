@@ -10,11 +10,15 @@
 
 namespace Components_Custom
 {
+    // TODO: This doesn't really have to inherit from Component. Remove to make room for custom API.
     struct CustomComponent : public Components::Component
     {
         CustomComponent(Game::Entity* entity) : Component(entity) {}
 
-        virtual void Update() {}
+        virtual void OnCreation(){}
+        virtual void OnDestroy(){}
+        
+        virtual void Update(float deltaTime) {}
         virtual void OnCollision(Game::Entity* other) {}
     };
 }

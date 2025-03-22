@@ -12,7 +12,7 @@
 
 namespace Components
 {
-    struct PlayerInput : public Components_Custom::CustomComponent
+    struct PlayerInput : public Component
     {
         PlayerInput(Game::Entity* entity, int up_key, int down_key, int left_key, int right_key)
         : up_key_(up_key),
@@ -20,13 +20,13 @@ namespace Components
         left_key_(left_key),
         right_key_(right_key),
         direction_(),
-        CustomComponent(entity)
+        Component(entity)
         {}
 
         PlayerInput(Game::Entity* entity) : PlayerInput(entity, KEY_W, KEY_S, KEY_A, KEY_D)
         {}
 
-        void Update() override
+        void Poll()
         {
             direction_ = {0.0f, 0.0f};
             

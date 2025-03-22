@@ -23,7 +23,6 @@ namespace States
         entt::registry registry_;
     private:
         void HandleInput();
-        void HandleMovement();
         void HandleCollisions();
         void HandleScriptables();
         void Render();

@@ -6,9 +6,10 @@
 #define PLAYERMOVEMENT_H
 
 #include "CustomComponent.h"
-#include "../Engine/Component.h"
-#include "../Engine/PlayerInput.h"
-#include "../Engine/Transform.h"
+
+#include "Components/Engine/Component.h"
+#include "Components/Engine/PlayerInput.h"
+#include "Components/Engine/Transform.h"
 
 namespace Components
 {
@@ -26,7 +27,7 @@ namespace Components
         {
         }
 
-        void Update() override
+        void Update()
         {
             transform_->position.x += playerInput_->direction_.x * speed_;
             transform_->position.y += playerInput_->direction_.y * speed_;

@@ -8,11 +8,16 @@
 #include <entt.hpp>
 #include <iostream>
 
-
 namespace Components
 {
+    struct ScriptableComponent;
     struct Collider;
     struct Component;
+}
+
+namespace Components_Custom
+{
+    struct CustomComponent;
 }
 
 namespace Game
@@ -29,11 +34,22 @@ namespace Game
         {
             if constexpr (!std::is_base_of_v<Components::Component, T>)
                 throw std::invalid_argument("Type T must inherit from Component");
-            
-            auto* component = &registry_->emplace<T>(entity, this, std::forward<Args>(args)...);
-            
-            if (component == nullptr)
-                assert("Failed to add component");
+
+            // TODO: is this actually any different from the other case?
+            if constexpr (std::is_same_v<Components::ScriptableComponent, T>)
+            {
+                auto* component = &registry_->emplace<T>(entity, this);
+
+                if (component == nullptr)
+                    assert("Failed to add component");
+            }
+            else
+            {
+                auto* component = &registry_->emplace<T>(entity, this, std::forward<Args>(args)...);
+
+                if (component == nullptr)
+                    assert("Failed to add component");
+            }
         }
 
         template<typename T>

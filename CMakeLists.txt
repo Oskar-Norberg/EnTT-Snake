@@ -44,6 +44,7 @@ add_executable(${PROJECT_NAME} main.cpp
         include/Components/Engine/Component.h
         src/Entity.cpp
         include/Components/CustomComponent/CustomComponent.h
+        include/Components/Engine/ScriptableComponent.h
 )
 
 target_link_libraries(${PROJECT_NAME}
