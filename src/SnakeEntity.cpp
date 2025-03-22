@@ -13,8 +13,10 @@ namespace Snake
 {
     SnakeEntity::SnakeEntity(entt::registry* registry) : Entity(registry){
         AddComponent<Components::SpriteRenderer>();
-        AddComponent<Components::PlayerInput>();
-        AddComponent<Components::PlayerMovement>(0.2f);
         AddComponent<Components::BoxCollider>(Rectangle{0, 0, 0.25f, 0.25f});
+        AddComponent<Components::PlayerInput>();
+
+        // Slightly ugly having to send two types.
+        // AddComponent<Components::ScriptableComponent, Components::PlayerMovement>();
     }
 }

@@ -16,7 +16,7 @@ namespace Components
     struct PlayerMovement : public Components_Custom::CustomComponent
     {
         explicit PlayerMovement(Game::Entity* entity, const float speed) :
-        CustomComponent(entity),
+        CustomComponent(),
         speed_(speed),
         transform_(entity->GetComponent<Transform>()),
         playerInput_(entity->GetComponent<PlayerInput>())

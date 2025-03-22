@@ -4,6 +4,7 @@
 
 #include "State.h"
 
+#include "Components/CustomComponent/CustomComponent.h"
 #include "Components/Engine/PlayerInput.h"
 #include "Components/Engine/SpriteRenderer.h"
 #include "Components/Engine/Transform.h"

@@ -29,27 +29,29 @@ namespace Game
         
         virtual ~Entity();
 
+        template<typename T, typename T2>
+        void AddComponent()
+        {
+            if constexpr (!std::is_base_of_v<Components::Component, T>)
+                throw std::invalid_argument("Type T must inherit from Component");
+
+            // Bind CustomComponent type to ScriptableComponent base.
+            auto* component = &registry_->emplace<T>(entity, this).template Bind<T2>();
+
+            if (component == nullptr)
+                assert("Failed to add component");
+        }
+
         template<typename T, typename... Args>
         void AddComponent(Args&&... args)
         {
             if constexpr (!std::is_base_of_v<Components::Component, T>)
                 throw std::invalid_argument("Type T must inherit from Component");
 
-            // TODO: is this actually any different from the other case?
-            if constexpr (std::is_same_v<Components::ScriptableComponent, T>)
-            {
-                auto* component = &registry_->emplace<T>(entity, this);
+            auto* component = &registry_->emplace<T>(entity, this, std::forward<Args>(args)...);
 
-                if (component == nullptr)
-                    assert("Failed to add component");
-            }
-            else
-            {
-                auto* component = &registry_->emplace<T>(entity, this, std::forward<Args>(args)...);
-
-                if (component == nullptr)
-                    assert("Failed to add component");
-            }
+            if (component == nullptr)
+                assert("Failed to add component");
         }
 
         template<typename T>

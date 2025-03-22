@@ -5,15 +5,16 @@
 #ifndef CUSTOMCOMPONENT_H
 #define CUSTOMCOMPONENT_H
 
-#include "Components/Engine/Component.h"
-#include "Entity.h"
+namespace Game
+{
+    class Entity;
+}
 
 namespace Components_Custom
 {
-    // TODO: This doesn't really have to inherit from Component. Remove to make room for custom API.
-    struct CustomComponent : public Components::Component
+    struct CustomComponent
     {
-        CustomComponent(Game::Entity* entity) : Component(entity) {}
+        CustomComponent() {}
 
         virtual void OnCreation(){}
         virtual void OnDestroy(){}

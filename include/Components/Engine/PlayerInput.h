@@ -7,8 +7,8 @@
 
 #include <raylib.h>
 
+#include "Components/Engine/Component.h"
 #include "raymath.h"
-#include "Components/CustomComponent/CustomComponent.h"
 
 namespace Components
 {
