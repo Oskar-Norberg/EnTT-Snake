@@ -4,17 +4,12 @@
 
 #include "Entity.h"
 
-#include "Components/SpriteRenderer.h"
-#include "Components/Updateable.h"
+#include "Components/Engine/Transform.h"
 
-namespace Components
-{
-    struct Transform;
-}
 
 namespace Game
 {
-    Entity::Entity(entt::registry* registry) : registry_(registry), updateables_()
+    Entity::Entity(entt::registry* registry) : registry_(registry)
     {
         entity = registry_->create();
 
@@ -30,24 +25,6 @@ namespace Game
     Entity::~Entity()
     {
         registry_->destroy(entity);
-    }
-
-    void Entity::Update(float deltaTime)
-    {
-        for (auto updateable : updateables_)
-            updateable->Update();
-    }
-
-    void Entity::Render()
-    {
-        if (HasComponent<Components::SpriteRenderer>())
-        {
-            auto spriteRenderer = GetComponent<Components::SpriteRenderer>();
-            auto transform = GetComponent<Components::Transform>();
-
-            // shits being copied
-            spriteRenderer->Render(*transform);
-        }
     }
 
     Entity* Entity::GetEntity()

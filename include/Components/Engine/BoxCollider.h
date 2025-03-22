@@ -7,8 +7,8 @@
 
 #include <vector>
 
-#include "raylib.h"
-#include "Components/Component.h"
+#include "../../../cmake-build-debug/_deps/raylib_external-src/src/raylib.h"
+#include "Components/Engine/Component.h"
 
 namespace Components{
     struct BoxCollider : public Component

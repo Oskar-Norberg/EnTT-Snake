@@ -11,15 +11,8 @@
 
 namespace Components
 {
+    struct Collider;
     struct Component;
-}
-
-// Forward declarations
-struct Collider;
-
-namespace Components
-{
-    struct Updateable;
 }
 
 namespace Game
@@ -41,9 +34,6 @@ namespace Game
             
             if (component == nullptr)
                 assert("Failed to add component");
-
-            if constexpr (std::is_base_of_v<Components::Updateable, T>)
-                updateables_.push_back(component);
         }
 
         template<typename T>
@@ -64,16 +54,10 @@ namespace Game
             registry_->remove<T>(entity);
         }
 
-        virtual void Update(float deltaTime);
-        
-        virtual void Render();
-
         Entity* GetEntity();
 
-        void OnCollision(Collider* collider);
+        void OnCollision(Components::Collider* collider);
     private:
-        // TODO: Slight technical debt
-        std::vector<Components::Updateable*> updateables_;
         entt::registry* registry_;
         entt::entity entity;
     };

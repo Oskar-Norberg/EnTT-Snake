@@ -4,10 +4,10 @@
 
 #include "SnakeEntity.h"
 
-#include "BoxCollider.h"
-#include "Components/PlayerInput.h"
-#include "Components/PlayerMovement.h"
-#include "Components/SpriteRenderer.h"
+#include "../include/Components/Engine/BoxCollider.h"
+#include "Components/Engine/PlayerInput.h"
+#include "../include/Components/CustomComponent/PlayerMovement.h"
+#include "Components/Engine/SpriteRenderer.h"
 
 namespace Snake
 {
@@ -16,9 +16,5 @@ namespace Snake
         AddComponent<Components::PlayerInput>();
         AddComponent<Components::PlayerMovement>(0.2f);
         AddComponent<Components::BoxCollider>(Rectangle{0, 0, 0.25f, 0.25f});
-    }
-    
-    SnakeEntity::~SnakeEntity(){
-        registry_->destroy(entity_);
     }
 }

@@ -5,16 +5,17 @@
 #ifndef PLAYERMOVEMENT_H
 #define PLAYERMOVEMENT_H
 
-#include "Component.h"
-#include "PlayerInput.h"
-#include "Transform.h"
+#include "CustomComponent.h"
+#include "../Engine/Component.h"
+#include "../Engine/PlayerInput.h"
+#include "../Engine/Transform.h"
 
 namespace Components
 {
-    struct PlayerMovement : public Component, public Updateable
+    struct PlayerMovement : public Components_Custom::CustomComponent
     {
         explicit PlayerMovement(Game::Entity* entity, const float speed) :
-        Component(entity),
+        CustomComponent(entity),
         speed_(speed),
         transform_(entity->GetComponent<Transform>()),
         playerInput_(entity->GetComponent<PlayerInput>())

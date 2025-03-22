@@ -30,20 +30,20 @@ add_executable(${PROJECT_NAME} main.cpp
         src/States/MainMenuState.cpp
         include/SnakeGame.h
         src/SnakeGame.cpp
-        include/Components/Transform.h
-        include/Components/SpriteRenderer.h
+        include/Components/Engine/Transform.h
+        include/Components/Engine/SpriteRenderer.h
         include/SnakeEntity.h
         src/SnakeEntity.cpp
-        include/Components/PlayerInput.h
-        include/Components/PlayerMovement.h
+        include/Components/Engine/PlayerInput.h
+        include/Components/CustomComponent/PlayerMovement.h
         include/Entity.h
-        include/BoxCollider.h
+        include/Components/Engine/BoxCollider.h
         include/Apple.h
         src/Apple.cpp
-        include/Components/Collider.h
-        include/Components/Updateable.h
-        include/Components/Component.h
+        include/Components/Engine/Collider.h
+        include/Components/Engine/Component.h
         src/Entity.cpp
+        include/Components/CustomComponent/CustomComponent.h
 )
 
 target_link_libraries(${PROJECT_NAME}

@@ -7,13 +7,12 @@
 
 #include <raylib.h>
 
-#include "Component.h"
 #include "raymath.h"
-#include "Updateable.h"
+#include "Components/CustomComponent/CustomComponent.h"
 
 namespace Components
 {
-    struct PlayerInput : public Component, public Updateable
+    struct PlayerInput : public Components_Custom::CustomComponent
     {
         PlayerInput(Game::Entity* entity, int up_key, int down_key, int left_key, int right_key)
         : up_key_(up_key),
@@ -21,7 +20,7 @@ namespace Components
         left_key_(left_key),
         right_key_(right_key),
         direction_(),
-        Component(entity)
+        CustomComponent(entity)
         {}
 
         PlayerInput(Game::Entity* entity) : PlayerInput(entity, KEY_W, KEY_S, KEY_A, KEY_D)

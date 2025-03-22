@@ -7,11 +7,7 @@
 #include "StateMachine.h"
 #include <iostream>
 
-#include "BoxCollider.h"
-#include "Components/PlayerInput.h"
-#include "Components/PlayerMovement.h"
-#include "Components/SpriteRenderer.h"
-#include "Components/Transform.h"
+#include "../../include/Components/Engine/BoxCollider.h"
 
 namespace Components
 {
@@ -32,11 +28,6 @@ namespace States
 
     void PlayingState::Tick(StateMachine* state_machine_)
     {
-        for (auto entity : entities_)
-        {
-            entity->Update(GetFrameTime());
-            entity->Render();
-        }
         
         // HandleInput();
         // HandleMovement();

@@ -4,8 +4,8 @@
 
 #include "Apple.h"
 
-#include "BoxCollider.h"
-#include "Components/SpriteRenderer.h"
+#include "Components/Engine/BoxCollider.h"
+#include "Components/Engine/SpriteRenderer.h"
 
 namespace Game
 {
