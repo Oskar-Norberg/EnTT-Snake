@@ -10,6 +10,4 @@ compile_commands.json
 CTestTestfile.cmake
 cmake-*
 _deps
-.idea/.name
-.idea/editor.xml
-.idea/vcs.xml
+.idea/*
