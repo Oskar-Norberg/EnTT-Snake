@@ -16,7 +16,6 @@ namespace Snake
         AddComponent<Components::BoxCollider>(Rectangle{0, 0, 0.25f, 0.25f});
         AddComponent<Components::PlayerInput>();
 
-        // Slightly ugly having to send two types.
-        // AddComponent<Components::ScriptableComponent, Components::PlayerMovement>();
+        AddComponent<Components::PlayerMovement>();
     }
 }

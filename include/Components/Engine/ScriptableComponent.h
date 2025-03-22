@@ -25,7 +25,7 @@ namespace Components
         std::function<void()> UpdateFunction;
         std::function<void()> OnCollisionFunction;
         
-        ScriptableComponent(Game::Entity* entity) : Component(entity), component_(component)
+        ScriptableComponent(Game::Entity* entity) : Component(entity)
         {
         }
 
@@ -41,9 +41,10 @@ namespace Components
 
             OnCreateFunction = [this](){component_->OnCreation();};
             OnDestroyFunction = [this](){component_->OnDestroy();};
-            
-            UpdateFunction = [this](float deltaTime){component_->Update(deltaTime);};
-            OnCollisionFunction = [this](Game::Entity* other){component_->OnCollision(other);};
+
+            // TODO: this shit doesnt work and idk why
+            // UpdateFunction = [this](float deltaTime){component_->Update(deltaTime);};
+            // OnCollisionFunction = [this](Game::Entity* other){component_->OnCollision(other);};
         }
 
     private:
