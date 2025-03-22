@@ -17,13 +17,14 @@ namespace Components
 {
     struct ScriptableComponent : public Component
     {
+        // TODO: Please call the destroy please, shit is leaking
         std::function<void()> InstantiationFunction;
         std::function<void()> DestroyFunction;
 
         std::function<void()> OnCreateFunction;
         std::function<void()> OnDestroyFunction;
-        std::function<void()> UpdateFunction;
-        std::function<void()> OnCollisionFunction;
+        std::function<void(float deltaTime)> UpdateFunction;
+        std::function<void(Game::Entity* other)> OnCollisionFunction;
         
         ScriptableComponent(Game::Entity* entity) : Component(entity)
         {
@@ -42,9 +43,10 @@ namespace Components
             OnCreateFunction = [this](){component_->OnCreation();};
             OnDestroyFunction = [this](){component_->OnDestroy();};
 
-            // TODO: this shit doesnt work and idk why
-            // UpdateFunction = [this](float deltaTime){component_->Update(deltaTime);};
-            // OnCollisionFunction = [this](Game::Entity* other){component_->OnCollision(other);};
+            // this shit doesnt work and idk why
+            // -i know why shit didnt work
+            UpdateFunction = [this](float deltaTime){component_->Update(deltaTime);};
+            OnCollisionFunction = [this](Game::Entity* other){component_->OnCollision(other);};
         }
 
     private:

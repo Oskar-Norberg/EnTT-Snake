@@ -6,6 +6,7 @@
 
 #include "Components/CustomComponent/CustomComponent.h"
 #include "Components/Engine/PlayerInput.h"
+#include "Components/Engine/ScriptableComponent.h"
 #include "Components/Engine/SpriteRenderer.h"
 #include "Components/Engine/Transform.h"
 
@@ -55,12 +56,12 @@ namespace States
     }
     
     void State::HandleScriptables(){
-        auto customGroup = registry_.group<Components_Custom::CustomComponent>();
+        auto customGroup = registry_.group<Components::ScriptableComponent>();
         
         for (auto entity : customGroup)
         {
-            auto& transform = customGroup.get<Components_Custom::CustomComponent>(entity);
-            transform.Update(GetFrameTime());
+            auto& transform = customGroup.get<Components::ScriptableComponent>(entity);
+            transform.UpdateFunction(GetFrameTime());
         }
     }
     

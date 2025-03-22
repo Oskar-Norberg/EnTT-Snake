@@ -37,9 +37,15 @@ namespace Game
                 throw std::invalid_argument("Type T must inherit from Component");
 
             if constexpr (std::is_base_of_v<Components_Custom::CustomComponent, T>)
-                registry_->emplace<Components::ScriptableComponent>(entity, this).Bind<T>();
+            {
+                Components::ScriptableComponent& component = registry_->emplace<Components::ScriptableComponent>(entity, this);
+                component.Bind<T>();
+                component.InstantiationFunction();
+            }
             else
-                &registry_->emplace<T>(entity, this, std::forward<Args>(args)...);
+            {
+                registry_->emplace<T>(entity, this, std::forward<Args>(args)...);
+            }
 
             // TODO: Add error handling
             // TODO: Return component
