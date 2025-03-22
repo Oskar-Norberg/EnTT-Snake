@@ -18,6 +18,7 @@ namespace Components
     struct ScriptableComponent : public Component
     {
         // TODO: Please call the destroy please, shit is leaking
+        // actually maybe its not leaking, look into if removing an entity from its registry calls the dtor on all components, i guess it should.
         std::function<void()> InstantiationFunction;
         std::function<void()> DestroyFunction;
 
@@ -26,13 +27,7 @@ namespace Components
         std::function<void(float deltaTime)> UpdateFunction;
         std::function<void(Game::Entity* other)> OnCollisionFunction;
         
-        ScriptableComponent(Game::Entity* entity) : Component(entity)
-        {
-        }
-
-        ~ScriptableComponent()
-        {
-        }
+        ScriptableComponent(Game::Entity* entity) : Component(entity){}
 
         template<typename T>
         void Bind()
@@ -45,7 +40,7 @@ namespace Components
 
             // this shit doesnt work and idk why
             // -i know why shit didnt work
-            UpdateFunction = [this](float deltaTime){component_->Update(deltaTime);};
+            UpdateFunction = [this](float deltaTime){component_->OnUpdate(deltaTime);};
             OnCollisionFunction = [this](Game::Entity* other){component_->OnCollision(other);};
         }
 

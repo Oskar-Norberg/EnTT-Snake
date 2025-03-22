@@ -7,8 +7,6 @@
 
 #include "State.h"
 
-#include <entt.hpp>
-
 #include "Entity.h"
 
 #include "SnakeEntity.h"
