@@ -4,7 +4,10 @@
 
 #ifndef STATE_H
 #define STATE_H
+
 #include "StateMachine.h"
+
+#include <entt.hpp>
 
 namespace States
 {
@@ -14,8 +17,16 @@ namespace States
         State();
     
         virtual void Enter(StateMachine* state_machine_) = 0;
-        virtual void Tick(StateMachine* state_machine_) = 0;
+        virtual void Tick(StateMachine* state_machine_);
         virtual void Exit(StateMachine* state_machine_) = 0;
+    protected:
+        entt::registry registry_;
+    private:
+        void HandleInput();
+        void HandleMovement();
+        void HandleCollisions();
+        void HandleScriptables();
+        void Render();
     };
 }
 

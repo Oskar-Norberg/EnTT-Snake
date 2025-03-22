@@ -5,6 +5,11 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
+namespace Game
+{
+    class Entity;
+}
+
 namespace Components
 {
     struct Component

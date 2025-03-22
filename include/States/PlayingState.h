@@ -26,15 +26,9 @@ namespace States
         void Exit(StateMachine* state_machine_) override;
         
     private:
-        entt::registry registry_;
         Snake::SnakeEntity snake_;
         Game::Apple apple_;
         std::vector<Game::Entity*> entities_;
-
-        void HandleInput();
-        void HandleMovement();
-        void HandleCollisions();
-        void Render();
     };
 }
 
