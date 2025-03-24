@@ -45,7 +45,7 @@ namespace Components
 
             // this shit doesnt work and idk why
             // -i know why shit didnt work
-            UpdateFunction = [this](float deltaTime){component_->Update(deltaTime);};
+            UpdateFunction = [this](float deltaTime){component_->OnUpdate(deltaTime);};
             OnCollisionFunction = [this](Game::Entity* other){component_->OnCollision(other);};
         }
 

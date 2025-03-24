@@ -19,14 +19,14 @@ namespace Components_Custom
         virtual void OnCreation(){}
         virtual void OnDestroy(){}
         
-        virtual void Update(float deltaTime) {}
+        virtual void OnUpdate(float deltaTime) {}
         virtual void OnCollision(Game::Entity* other) {}
 
         void SetEntity(Game::Entity* entity)
         {
             entity_ = entity;
         }
-    private:
+    protected:
         Game::Entity* entity_;
     };
 }

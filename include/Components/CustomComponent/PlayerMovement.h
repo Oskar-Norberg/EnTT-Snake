@@ -16,7 +16,14 @@ namespace Components
     {
         PlayerMovement() = default;
 
-        void Update()
+        void OnCreation() override
+        {
+            transform_ = entity_->GetComponent<Transform>();
+            playerInput_ = entity_->GetComponent<PlayerInput>();
+            speed_ = 0.1f;
+        }
+
+        void OnUpdate(float deltaTime) override
         {
             transform_->position.x += playerInput_->direction_.x * speed_;
             transform_->position.y += playerInput_->direction_.y * speed_;
