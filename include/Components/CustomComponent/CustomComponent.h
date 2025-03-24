@@ -14,13 +14,20 @@ namespace Components_Custom
 {
     struct CustomComponent
     {
-        CustomComponent() {}
+        CustomComponent() = default;
 
         virtual void OnCreation(){}
         virtual void OnDestroy(){}
         
         virtual void Update(float deltaTime) {}
         virtual void OnCollision(Game::Entity* other) {}
+
+        void SetEntity(Game::Entity* entity)
+        {
+            entity_ = entity;
+        }
+    private:
+        Game::Entity* entity_;
     };
 }
 

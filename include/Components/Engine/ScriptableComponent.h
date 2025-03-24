@@ -37,7 +37,7 @@ namespace Components
         template<typename T>
         void Bind()
         {
-            InstantiationFunction = [this](){component_ = new T();};
+            InstantiationFunction = [this](){component_ = new T(); component_->SetEntity(entity_);};
             DestroyFunction = [this](){delete component_;};
 
             OnCreateFunction = [this](){component_->OnCreation();};
