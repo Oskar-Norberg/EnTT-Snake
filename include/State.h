@@ -15,6 +15,7 @@ namespace States
     {
     public:
         State();
+        ~State();
     
         virtual void Enter(StateMachine* state_machine_) = 0;
         virtual void Tick(StateMachine* state_machine_);

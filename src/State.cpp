@@ -16,6 +16,19 @@ namespace States
     {
     }
 
+    State::~State()
+    {
+        auto customGroup = registry_.group<Components::ScriptableComponent>();
+        
+        for (auto entity : customGroup)
+        {
+            auto& scriptable = customGroup.get<Components::ScriptableComponent>(entity);
+            if (scriptable.IsInstantiated())
+                scriptable.OnDestroy();
+        }
+        registry_.clear();
+    }
+
     void State::Tick(StateMachine* state_machine_){
         HandleInput();
         HandleCollisions();
@@ -60,8 +73,14 @@ namespace States
         
         for (auto entity : customGroup)
         {
-            auto& transform = customGroup.get<Components::ScriptableComponent>(entity);
-            transform.UpdateFunction(GetFrameTime());
+            auto& scriptable = customGroup.get<Components::ScriptableComponent>(entity);
+
+            if (!scriptable.IsInstantiated())
+            {
+                scriptable.OnCreate();
+            }
+            
+            scriptable.OnUpdate(GetFrameTime());
         }
     }
     

@@ -14,24 +14,23 @@ namespace Components
 {
     struct PlayerMovement : public Components_Custom::CustomComponent
     {
-        PlayerMovement() = default;
-
         void OnCreation() override
         {
             transform_ = entity_->GetComponent<Transform>();
             playerInput_ = entity_->GetComponent<PlayerInput>();
-            speed_ = 0.1f;
+            speed_ = 500.0f;
         }
 
         void OnUpdate(float deltaTime) override
         {
-            transform_->position.x += playerInput_->direction_.x * speed_;
-            transform_->position.y += playerInput_->direction_.y * speed_;
+            transform_->position.x += playerInput_->direction_.x * speed_ * deltaTime;
+            transform_->position.y += playerInput_->direction_.y * speed_ * deltaTime;
         }
 
         float speed_;
 
     private:
+        // TODO: Would it be possible to use references instead of raw pointers?
         Transform* transform_;
         PlayerInput* playerInput_;
     };

@@ -40,9 +40,6 @@ namespace Game
             {
                 Components::ScriptableComponent& component = registry_->emplace<Components::ScriptableComponent>(entity, this);
                 component.Bind<T>();
-                // TODO: Consider moving into bind function.
-                component.InstantiationFunction();
-                component.OnCreateFunction();
             }
             else
             {

@@ -5,6 +5,8 @@
 #ifndef CUSTOMCOMPONENT_H
 #define CUSTOMCOMPONENT_H
 
+#include <iostream>
+
 namespace Game
 {
     class Entity;
@@ -20,6 +22,7 @@ namespace Components_Custom
         virtual void OnDestroy(){}
         
         virtual void OnUpdate(float deltaTime) {}
+        
         virtual void OnCollision(Game::Entity* other) {}
 
         void SetEntity(Game::Entity* entity)

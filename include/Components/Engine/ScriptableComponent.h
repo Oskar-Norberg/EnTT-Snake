@@ -17,36 +17,30 @@ namespace Components
 {
     struct ScriptableComponent : public Component
     {
-        // TODO: Please call the destroy please, shit is leaking
-        std::function<void()> InstantiationFunction;
-        std::function<void()> DestroyFunction;
-
-        std::function<void()> OnCreateFunction;
-        std::function<void()> OnDestroyFunction;
-        std::function<void(float deltaTime)> UpdateFunction;
-        std::function<void(Game::Entity* other)> OnCollisionFunction;
+        std::function<void()> OnCreate;
+        std::function<void()> OnDestroy;
+        std::function<void(float deltaTime)> OnUpdate;
+        std::function<void(Game::Entity* other)> OnCollision;
         
-        ScriptableComponent(Game::Entity* entity) : Component(entity)
+        explicit ScriptableComponent(Game::Entity* entity) : Component(entity), component_(nullptr)
         {
         }
 
-        ~ScriptableComponent()
-        {
-        }
+        ~ScriptableComponent() = default;
 
         template<typename T>
         void Bind()
         {
-            InstantiationFunction = [this](){component_ = new T(); component_->SetEntity(entity_);};
-            DestroyFunction = [this](){delete component_;};
+            OnCreate = [this](){component_ = new T(); component_->SetEntity(entity_); component_->OnCreation();};
+            OnDestroy = [this](){component_->OnDestroy(); delete component_;};
 
-            OnCreateFunction = [this](){component_->OnCreation();};
-            OnDestroyFunction = [this](){component_->OnDestroy();};
+            OnUpdate = [this](float deltaTime){component_->OnUpdate(deltaTime);};
+            OnCollision = [this](Game::Entity* other){component_->OnCollision(other);};
+        }
 
-            // this shit doesnt work and idk why
-            // -i know why shit didnt work
-            UpdateFunction = [this](float deltaTime){component_->OnUpdate(deltaTime);};
-            OnCollisionFunction = [this](Game::Entity* other){component_->OnCollision(other);};
+        bool IsInstantiated() const
+        {
+            return component_ != nullptr;
         }
 
     private:
