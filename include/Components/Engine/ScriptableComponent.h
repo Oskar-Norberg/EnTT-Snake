@@ -20,7 +20,9 @@ namespace Components
         std::function<void()> OnCreate;
         std::function<void()> OnDestroy;
         std::function<void(float deltaTime)> OnUpdate;
-        std::function<void(Game::Entity* other)> OnCollision;
+
+        // TODO: Find a way to pass the game entity wrapper instead of the entt entity
+        std::function<void(entt::entity other)> OnCollision;
         
         explicit ScriptableComponent(Game::Entity* entity) : Component(entity), component_(nullptr)
         {
@@ -35,7 +37,7 @@ namespace Components
             OnDestroy = [this](){component_->OnDestroy(); delete component_;};
 
             OnUpdate = [this](float deltaTime){component_->OnUpdate(deltaTime);};
-            OnCollision = [this](Game::Entity* other){component_->OnCollision(other);};
+            OnCollision = [this](entt::entity other){component_->OnCollision(other);};
         }
 
         bool IsInstantiated() const

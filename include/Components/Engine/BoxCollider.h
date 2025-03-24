@@ -5,8 +5,9 @@
 #ifndef BOXCOLLIDER_H
 #define BOXCOLLIDER_H
 
-#include <vector>
+#include "Entity.h"
 
+#include "Transform.h"
 #include "../../../cmake-build-debug/_deps/raylib_external-src/src/raylib.h"
 #include "Components/Engine/Component.h"
 
@@ -18,21 +19,21 @@ namespace Components{
 
         // TODO: this function is going to be the slowest thing ever
         // TODO: It shouldn't really be here either? Maybe in a physics class?
-        std::vector<BoxCollider> CheckForCollisions(const std::vector<BoxCollider>& boxColliders) const
+        bool CheckCollision(const BoxCollider& other) const
         {
-            std::vector<BoxCollider> collidedWith = {};
+            Vector2 position = entity_->GetComponent<Transform>()->position;
+            Vector2 otherPosition = other.entity_->GetComponent<Transform>()->position;
+
+            Rectangle collider = this->collider;
+            Rectangle otherCollider = other.collider;
+
+            collider.x = position.x;
+            collider.y = position.y;
+
+            otherCollider.x = otherPosition.x;
+            otherCollider.y = otherPosition.y;
             
-            for (auto& other : boxColliders)
-            {
-                // Skip self
-                if (&other.collider == &collider)
-                    continue;
-                
-                if (CheckCollisionRecs(collider, other.collider))
-                    collidedWith.push_back(other);
-            }
-            
-            return collidedWith;
+            return CheckCollisionRecs(collider, other.collider);
         }
     };
 }

@@ -5,6 +5,7 @@
 #include "State.h"
 
 #include "Components/CustomComponent/CustomComponent.h"
+#include "Components/Engine/BoxCollider.h"
 #include "Components/Engine/PlayerInput.h"
 #include "Components/Engine/ScriptableComponent.h"
 #include "Components/Engine/SpriteRenderer.h"
@@ -48,24 +49,35 @@ namespace States
     
     void State::HandleCollisions(){
         // TODO: Mark my words, this is gonna run like ass
-        
-        // auto boxColliderGroup = registry_.group<Components::BoxCollider>(entt::get<Components::Transform>);
-        // std::vector<Components::BoxCollider> boxColliders;
-        // for (auto entity : boxColliderGroup)
-        // {
-        //     auto& boxCollider = boxColliderGroup.get<Components::BoxCollider>(entity);
-        //     boxColliders.push_back(boxCollider);
-        // }
-        //
-        // for (auto& boxCollider : boxColliders)
-        // {
-        //     std::vector<Components::BoxCollider> collisions = boxCollider.CheckForCollisions(boxColliders);
-        //
-        //     for (auto& collision : collisions)
-        //     {
-        //         std::cout << "Collision detected" << std::endl;
-        //     }
-        // }
+
+        auto boxColliderGroup = registry_.group<Components::BoxCollider>();
+
+        for (auto entity : boxColliderGroup)
+        {
+            auto& boxCollider = boxColliderGroup.get<Components::BoxCollider>(entity);
+            
+            for (auto otherEntity : boxColliderGroup)
+            {
+                if (otherEntity == entity)
+                    continue;
+
+                auto& otherBoxCollider = boxColliderGroup.get<Components::BoxCollider>(otherEntity);
+
+                bool collided = boxCollider.CheckCollision(otherBoxCollider);
+
+                if (collided)
+                {
+                    if (!registry_.any_of<Components::ScriptableComponent>(entity))
+                        continue;
+                    
+                    auto& scriptable = registry_.get<Components::ScriptableComponent>(entity);
+                    if (!scriptable.IsInstantiated())
+                        continue;
+                    
+                    scriptable.OnCollision(otherEntity);
+                }
+            }
+        }
     }
     
     void State::HandleScriptables(){

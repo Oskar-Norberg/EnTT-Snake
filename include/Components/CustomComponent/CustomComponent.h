@@ -23,7 +23,7 @@ namespace Components_Custom
         
         virtual void OnUpdate(float deltaTime) {}
         
-        virtual void OnCollision(Game::Entity* other) {}
+        virtual void OnCollision(entt::entity other) {}
 
         void SetEntity(Game::Entity* entity)
         {

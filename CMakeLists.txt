@@ -40,7 +40,6 @@ add_executable(${PROJECT_NAME} main.cpp
         include/Components/Engine/BoxCollider.h
         include/Apple.h
         src/Apple.cpp
-        include/Components/Engine/Collider.h
         include/Components/Engine/Component.h
         src/Entity.cpp
         include/Components/CustomComponent/CustomComponent.h
