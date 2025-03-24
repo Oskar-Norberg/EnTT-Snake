@@ -8,9 +8,6 @@
 #include <raylib.h>
 #include <vector>
 
-#include "Entity.h"
-#include "Components/CustomComponent/CustomComponent.h"
-
 #include "States/MainMenuState.h"
 #include "States/PlayingState.h"
 

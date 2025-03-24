@@ -14,21 +14,13 @@ namespace Components_Custom
 {
     struct CustomComponent
     {
-        CustomComponent(Game::Entity* entity) {}
+        CustomComponent() {}
 
         virtual void OnCreation(){}
         virtual void OnDestroy(){}
         
-        virtual void OnUpdate(float deltaTime) {}
+        virtual void Update(float deltaTime) {}
         virtual void OnCollision(Game::Entity* other) {}
-
-        template<typename T>
-        T& GetComponent()
-        {
-            return entity->GetComponent<T>();
-        }
-    private:
-        Game::Entity* entity;
     };
 }
 

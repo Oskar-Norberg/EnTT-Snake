@@ -4,12 +4,13 @@
 
 #ifndef SNAKEGAME_H
 #define SNAKEGAME_H
-
 #include <vector>
+
 #include "StateMachine.h"
 
 namespace Snake
 {
+
     class SnakeGame
     {
     public:

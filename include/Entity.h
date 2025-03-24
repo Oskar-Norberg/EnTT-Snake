@@ -12,9 +12,13 @@
 
 namespace Components
 {
-    struct ScriptableComponent;
     struct Collider;
     struct Component;
+}
+
+namespace Components_Custom
+{
+    struct CustomComponent;
 }
 
 namespace Game

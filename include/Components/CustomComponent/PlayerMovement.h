@@ -16,7 +16,7 @@ namespace Components
     {
         PlayerMovement() = default;
 
-        void OnUpdate(float deltaTime) override
+        void Update()
         {
             transform_->position.x += playerInput_->direction_.x * speed_;
             transform_->position.y += playerInput_->direction_.y * speed_;
