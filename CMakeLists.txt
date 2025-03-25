@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.29)
 
-# Project Name
+# Project Names
 set(ENGINE_PROJECT_NAME Engine)
+set(GAME_PROJECT_NAME Game)
 
 project(${ENGINE_PROJECT_NAME})
+project(${GAME_PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -17,23 +19,34 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib_external)
 
-# Define the Engine library
+# Engine Library
 add_library(${ENGINE_PROJECT_NAME} STATIC
         engine/include/WindowProperties.h
         engine/include/Engine.h
         engine/include/SceneManager.h
         engine/include/Scene.h
         engine/include/Entity.h
-        
+
         engine/src/Engine.cpp
         engine/src/SceneManager.cpp
         engine/src/Scene.cpp
         engine/src/Entity.cpp
 )
 
-# Link libraries
+# Include Raylib in Engine
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE raylib)
 
-# Include directories
-target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE engine/include)
-target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE include engine/vendor/entt/include)
+# Engine include directories
+target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC engine/include engine/vendor/entt/include)
+
+# Game Executable
+add_executable(${GAME_PROJECT_NAME} game/main.cpp
+        game/include/SnakeGame.h
+        
+        game/src/SnakeGame.cpp
+)
+
+# Import Engine to Game
+target_link_libraries(${GAME_PROJECT_NAME} PRIVATE ${ENGINE_PROJECT_NAME})
+target_link_libraries(${GAME_PROJECT_NAME} PRIVATE game/include)
+target_include_directories(${GAME_PROJECT_NAME} PRIVATE engine/include game/include)
