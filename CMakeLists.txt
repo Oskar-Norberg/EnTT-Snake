@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.29)
 
-# Project Names
 set(ENGINE_PROJECT_NAME Engine)
 set(GAME_PROJECT_NAME Game)
 
-project(${ENGINE_PROJECT_NAME})
+# Project Name
 project(${GAME_PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 20)
@@ -48,7 +47,7 @@ target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC engine/include engine/v
 # Game Executable
 add_executable(${GAME_PROJECT_NAME} game/main.cpp
         game/include/SnakeGame.h
-        
+
         game/src/SnakeGame.cpp
         game/include/Scenes/MainMenuScene.h
         game/src/Scenes/MainMenuScene.cpp
