@@ -7,8 +7,6 @@
 #include "SceneManager.h"
 #include <iostream>
 
-#include "../../include/Components/Engine/BoxCollider.h"
-
 namespace Components
 {
     struct BoxCollider;

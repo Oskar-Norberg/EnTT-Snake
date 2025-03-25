@@ -90,6 +90,7 @@ namespace Scenes
             if (!scriptable.IsInstantiated())
             {
                 scriptable.OnCreate();
+                
             }
             
             scriptable.OnUpdate(GetFrameTime());
@@ -97,6 +98,8 @@ namespace Scenes
     }
     
     void Scene::Render(){
+        ClearBackground(WHITE);
+        
         auto renderingGroup = registry_.group<Components::Transform>(entt::get<Components::SpriteRenderer>);
         
         for (auto entity : renderingGroup)

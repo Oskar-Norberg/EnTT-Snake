@@ -44,9 +44,16 @@ add_executable(${GAME_PROJECT_NAME} game/main.cpp
         game/include/SnakeGame.h
         
         game/src/SnakeGame.cpp
+        game/include/Scenes/MainMenuScene.h
+        game/src/Scenes/MainMenuScene.cpp
+        game/src/Scenes/PlayingScene.cpp
+        game/src/Apple.cpp
+        game/src/SnakeEntity.cpp
 )
+
+# TODO: TEMPORARY JUST INCLUDE RAYLIB IN GAME, bad practice
+target_link_libraries(${GAME_PROJECT_NAME} PRIVATE raylib)
 
 # Import Engine to Game
 target_link_libraries(${GAME_PROJECT_NAME} PRIVATE ${ENGINE_PROJECT_NAME})
-target_link_libraries(${GAME_PROJECT_NAME} PRIVATE game/include)
 target_include_directories(${GAME_PROJECT_NAME} PRIVATE engine/include game/include)

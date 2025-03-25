@@ -4,47 +4,25 @@
 
 #include "SnakeGame.h"
 
-#include "WindowProperties.h"
-#include <raylib.h>
-#include <vector>
-
 #include "Scenes/MainMenuScene.h"
 #include "Scenes/PlayingScene.h"
 
 namespace Snake
 {
-    SnakeGame::SnakeGame() : states_(), sceneManager_()
+    SnakeGame::SnakeGame() : playing_scene_(nullptr)
     {
-        InitWindow(Window::WINDOW_WIDTH, Window::WINDOW_HEIGHT, Window::WINDOW_TITLE);
-
-        states_.push_back(new Scenes::MainMenuScene());
-        states_.push_back(new Scenes::PlayingScene());
-
-        sceneManager_.AddScenes(states_);
-        // TODO: Temporarily start in scene playing
-        sceneManager_.SwitchScene(typeid(Scenes::PlayingScene));
+        playing_scene_ = new Scenes::PlayingScene();
+        
+        engine_ = Core::Engine();
+        engine_.SetScene(playing_scene_);
     }
 
     SnakeGame::~SnakeGame()
     {
-        CloseWindow();
-
-        for (auto state : states_)
-        {
-            delete state;
-        }
     }
 
     void SnakeGame::Run()
     {
-        while (!WindowShouldClose())
-        {
-            BeginDrawing();
-            ClearBackground(RAYWHITE);
-
-            sceneManager_.Update();
-            
-            EndDrawing();
-        }
+        engine_.Run();
     }
 }
