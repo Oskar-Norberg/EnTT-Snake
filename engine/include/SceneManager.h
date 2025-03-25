@@ -5,10 +5,6 @@
 #ifndef STATEMACHINE_H
 #define STATEMACHINE_H
 
-#include <typeindex>
-#include <unordered_map>
-#include <vector>
-
 namespace Scenes
 {
     class Scene;

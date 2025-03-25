@@ -88,9 +88,7 @@ namespace Scenes
             auto& scriptable = customGroup.get<Components::ScriptableComponent>(entity);
 
             if (!scriptable.IsInstantiated())
-            {
                 scriptable.OnCreate();
-            }
             
             scriptable.OnUpdate(GetFrameTime());
         }

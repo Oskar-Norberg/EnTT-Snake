@@ -16,9 +16,9 @@ namespace Core{
         void SetScene(Scenes::Scene* scene);
 
         void Run();
-        void Stop();
-        
     private:
+        void Init();
+        void CleanUp();
         Scenes::SceneManager sceneManager_;
     };
 }

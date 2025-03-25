@@ -25,15 +25,23 @@ namespace Core
 
     void Engine::Run()
     {
+        Init();
+        
         while (!WindowShouldClose())
         {
             BeginDrawing();
             sceneManager_.Update();
             EndDrawing();
         }
+
+        CleanUp();
     }
 
-    void Engine::Stop()
+    void Engine::Init()
+    {
+    }
+
+    void Engine::CleanUp()
     {
     }
 }
