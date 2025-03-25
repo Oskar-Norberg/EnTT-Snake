@@ -26,11 +26,17 @@ add_library(${ENGINE_PROJECT_NAME} STATIC
         engine/include/SceneManager.h
         engine/include/Scene.h
         engine/include/Entity.h
+        engine/include/Components/Engine/BoxCollider.h
+        engine/include/Components/Engine/Transform.h
+        engine/include/Components/Engine/SpriteRenderer.h
 
         engine/src/Engine.cpp
         engine/src/SceneManager.cpp
         engine/src/Scene.cpp
         engine/src/Entity.cpp
+        engine/include/Vector2.h
+        engine/src/Components/Engine/BoxCollider.cpp
+        engine/src/Components/Engine/SpriteRenderer.cpp
 )
 
 # Include Raylib in Engine
@@ -51,7 +57,7 @@ add_executable(${GAME_PROJECT_NAME} game/main.cpp
         game/src/SnakeEntity.cpp
 )
 
-# TODO: TEMPORARY JUST INCLUDE RAYLIB IN GAME, bad practice
+# Import raylib to Game - Needed for Textures
 target_link_libraries(${GAME_PROJECT_NAME} PRIVATE raylib)
 
 # Import Engine to Game

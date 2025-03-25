@@ -14,7 +14,7 @@ namespace Components
 
 namespace Scenes
 {
-    PlayingScene::PlayingScene() : Scene(), snake_(&registry_), apple_(&registry_, Vector2{5, 5})
+    PlayingScene::PlayingScene() : Scene(), snake_(&registry_), apple_(&registry_, Core_Utils::Vector2{5, 5})
     {
     }
 

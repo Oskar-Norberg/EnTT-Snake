@@ -90,7 +90,6 @@ namespace Scenes
             if (!scriptable.IsInstantiated())
             {
                 scriptable.OnCreate();
-                
             }
             
             scriptable.OnUpdate(GetFrameTime());
