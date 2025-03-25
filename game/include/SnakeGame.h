@@ -4,9 +4,13 @@
 
 #ifndef SNAKEGAME_H
 #define SNAKEGAME_H
-#include <vector>
 
-#include "SceneManager.h"
+#include "Engine.h"
+
+namespace Scenes
+{
+    class Scene;
+}
 
 namespace Snake
 {
@@ -20,8 +24,9 @@ namespace Snake
         void Run();
         
     private:
-        std::vector<Scenes::Scene*> states_;
-        Scenes::SceneManager stateMachine_;
+        Core::Engine engine_;
+
+        Scenes::Scene* playing_scene_;
     };
 }
 

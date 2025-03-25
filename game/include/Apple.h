@@ -4,17 +4,18 @@
 
 #ifndef APPLE_H
 #define APPLE_H
+
 #include "Entity.h"
-#include "raylib.h"
+#include "Vector2.h"
 
 namespace Game
 {
     class Apple : public Entity
     {
     public:
-        explicit Apple(entt::registry* registry, Vector2 position);
+        explicit Apple(entt::registry* registry, Core_Utils::Vector2 position);
     private:
-        Vector2 position_;
+        Core_Utils::Vector2 position_;
     };
 }
 

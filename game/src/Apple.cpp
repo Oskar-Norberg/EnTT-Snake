@@ -9,7 +9,7 @@
 
 namespace Game
 {
-    Apple::Apple(entt::registry* registry, Vector2 position) : position_(position), Entity(registry)
+    Apple::Apple(entt::registry* registry, Core_Utils::Vector2 position) : position_(position), Entity(registry)
     {
         auto* transform = GetComponent<Components::Transform>();
         transform->scale = 50.0f;

@@ -88,15 +88,15 @@ namespace Scenes
             auto& scriptable = customGroup.get<Components::ScriptableComponent>(entity);
 
             if (!scriptable.IsInstantiated())
-            {
                 scriptable.OnCreate();
-            }
             
             scriptable.OnUpdate(GetFrameTime());
         }
     }
     
     void Scene::Render(){
+        ClearBackground(WHITE);
+        
         auto renderingGroup = registry_.group<Components::Transform>(entt::get<Components::SpriteRenderer>);
         
         for (auto entity : renderingGroup)

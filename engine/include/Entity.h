@@ -69,8 +69,6 @@ namespace Game
         }
 
         Entity* GetEntity();
-
-        void OnCollision(Components::Collider* collider);
     private:
         entt::registry* registry_;
         entt::entity entity;
