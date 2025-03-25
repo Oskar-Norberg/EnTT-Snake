@@ -6,7 +6,7 @@
 #define SNAKEGAME_H
 #include <vector>
 
-#include "StateMachine.h"
+#include "SceneManager.h"
 
 namespace Snake
 {
@@ -20,8 +20,8 @@ namespace Snake
         void Run();
         
     private:
-        std::vector<States::State*> states_;
-        States::StateMachine stateMachine_;
+        std::vector<Scenes::Scene*> states_;
+        Scenes::SceneManager stateMachine_;
     };
 }
 

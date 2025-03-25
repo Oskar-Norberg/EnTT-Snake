@@ -5,7 +5,7 @@
 #ifndef PLAYINGSTATE_H
 #define PLAYINGSTATE_H
 
-#include "State.h"
+#include "Scene.h"
 
 #include <entt.hpp>
 
@@ -14,16 +14,16 @@
 #include "SnakeEntity.h"
 #include "Apple.h"
 
-namespace States
+namespace Scenes
 {
-    class PlayingState : public State
+    class PlayingScene : public Scene
     {
     public:
-        PlayingState();
+        PlayingScene();
     
-        void Enter(StateMachine* state_machine_) override;
-        void Tick(StateMachine* state_machine_) override;
-        void Exit(StateMachine* state_machine_) override;
+        void Enter(SceneManager* state_machine_) override;
+        void Tick(SceneManager* state_machine_) override;
+        void Exit(SceneManager* state_machine_) override;
         
     private:
         Snake::SnakeEntity snake_;

@@ -5,21 +5,21 @@
 #ifndef STATE_H
 #define STATE_H
 
-#include "StateMachine.h"
+#include "SceneManager.h"
 
 #include <entt.hpp>
 
-namespace States
+namespace Scenes
 {
-    class State
+    class Scene
     {
     public:
-        State();
-        ~State();
+        Scene();
+        ~Scene();
     
-        virtual void Enter(StateMachine* state_machine_) = 0;
-        virtual void Tick(StateMachine* state_machine_);
-        virtual void Exit(StateMachine* state_machine_) = 0;
+        virtual void Enter(SceneManager* scene_manager) = 0;
+        virtual void Tick(SceneManager* scene_manager);
+        virtual void Exit(SceneManager* scene_manager) = 0;
     protected:
         entt::registry registry_;
     private:

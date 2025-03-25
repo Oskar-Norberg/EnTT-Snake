@@ -8,8 +8,8 @@
 #include <raylib.h>
 #include <vector>
 
-#include "States/MainMenuState.h"
-#include "States/PlayingState.h"
+#include "Scenes/MainMenuScene.h"
+#include "Scenes/PlayingScene.h"
 
 namespace Snake
 {
@@ -17,12 +17,12 @@ namespace Snake
     {
         InitWindow(Window::WINDOW_WIDTH, Window::WINDOW_HEIGHT, Window::WINDOW_TITLE);
 
-        states_.push_back(new States::MainMenuState());
-        states_.push_back(new States::PlayingState());
+        states_.push_back(new Scenes::MainMenuScene());
+        states_.push_back(new Scenes::PlayingScene());
 
-        stateMachine_.AddStates(states_);
+        stateMachine_.AddScenes(states_);
         // TODO: Temporarily sets state to playing state
-        stateMachine_.SwitchState(typeid(States::PlayingState));
+        stateMachine_.SwitchScene(typeid(Scenes::PlayingScene));
     }
 
     SnakeGame::~SnakeGame()

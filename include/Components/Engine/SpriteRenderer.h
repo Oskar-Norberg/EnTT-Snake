@@ -27,7 +27,7 @@ namespace Components
         {
             // TODO: Add support for non uniform scaling
             Rectangle rectangle = Rectangle{transform.position.x, transform.position.y, transform.scale, transform.scale};
-            DrawTexturePro(texture_, Rectangle{0,0, static_cast<float>(texture_.width),static_cast<float>(texture_.height)}, rectangle, Vector2{0,0},0, WHITE);
+            DrawTexturePro(texture_, Rectangle{0,0, static_cast<float>(texture_.width), static_cast<float>(texture_.height)}, rectangle, Vector2{0,0},0, WHITE);
             // DrawTextureRec(texture_, rectangle, transform.position, WHITE);
         }
         

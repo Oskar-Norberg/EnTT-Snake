@@ -2,7 +2,7 @@
 // Created by Oskar.Norberg on 2025-03-13.
 //
 
-#include "State.h"
+#include "Scene.h"
 
 #include "Components/CustomComponent/CustomComponent.h"
 #include "Components/Engine/BoxCollider.h"
@@ -11,13 +11,13 @@
 #include "Components/Engine/SpriteRenderer.h"
 #include "Components/Engine/Transform.h"
 
-namespace States
+namespace Scenes
 {
-    State::State() : registry_()
+    Scene::Scene() : registry_()
     {
     }
 
-    State::~State()
+    Scene::~Scene()
     {
         auto customGroup = registry_.group<Components::ScriptableComponent>();
         
@@ -30,14 +30,14 @@ namespace States
         registry_.clear();
     }
 
-    void State::Tick(StateMachine* state_machine_){
+    void Scene::Tick(SceneManager* scene_manager){
         HandleInput();
         HandleCollisions();
         HandleScriptables();
         Render();
     }
 
-    void State::HandleInput(){
+    void Scene::HandleInput(){
         auto inputGroup = registry_.group<Components::PlayerInput>();
         
         for (auto entity : inputGroup)
@@ -47,7 +47,7 @@ namespace States
         }
     }
     
-    void State::HandleCollisions(){
+    void Scene::HandleCollisions(){
         // TODO: Mark my words, this is gonna run like ass
 
         auto boxColliderGroup = registry_.group<Components::BoxCollider>();
@@ -80,7 +80,7 @@ namespace States
         }
     }
     
-    void State::HandleScriptables(){
+    void Scene::HandleScriptables(){
         auto customGroup = registry_.group<Components::ScriptableComponent>();
         
         for (auto entity : customGroup)
@@ -96,7 +96,7 @@ namespace States
         }
     }
     
-    void State::Render(){
+    void Scene::Render(){
         auto renderingGroup = registry_.group<Components::Transform>(entt::get<Components::SpriteRenderer>);
         
         for (auto entity : renderingGroup)

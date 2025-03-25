@@ -2,27 +2,27 @@
 // Created by Oskar.Norberg on 2025-03-13.
 //
 
-#include "States/MainMenuState.h"
+#include "Scenes/MainMenuScene.h"
 
 #include <iostream>
 
-namespace States
+namespace Scenes
 {
-    MainMenuState::MainMenuState()
+    MainMenuScene::MainMenuScene()
     {
     }
 
-    void MainMenuState::Enter(StateMachine* state_machine_)
+    void MainMenuScene::Enter(SceneManager* state_machine_)
     {
         std::cout << "Enter Main Menu State" << std::endl;
     }
 
-    void MainMenuState::Tick(StateMachine* state_machine_)
+    void MainMenuScene::Tick(SceneManager* state_machine_)
     {
         std::cout << "Tick Main Menu State" << std::endl;
     }
 
-    void MainMenuState::Exit(StateMachine* state_machine_)
+    void MainMenuScene::Exit(SceneManager* state_machine_)
     {
         std::cout << "Exit Main Menu State" << std::endl;
     }

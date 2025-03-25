@@ -20,14 +20,14 @@ FetchContent_MakeAvailable(raylib_external)
 #Project Files
 add_executable(${PROJECT_NAME} main.cpp
         include/WindowProperties.h
-        include/StateMachine.h
-        include/State.h
-        include/States/PlayingState.h
-        include/States/MainMenuState.h
-        src/StateMachine.cpp
-        src/State.cpp
-        src/States/PlayingState.cpp
-        src/States/MainMenuState.cpp
+        include/SceneManager.h
+        include/Scene.h
+        include/Scenes/PlayingScene.h
+        include/Scenes/MainMenuScene.h
+        src/SceneManager.cpp
+        src/Scene.cpp
+        src/Scenes/PlayingScene.cpp
+        src/Scenes/MainMenuScene.cpp
         include/SnakeGame.h
         src/SnakeGame.cpp
         include/Components/Engine/Transform.h
