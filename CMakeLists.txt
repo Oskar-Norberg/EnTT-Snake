@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.29)
 
 # Project Name
-set(PROJECT_NAME EnTT)
+set(ENGINE_PROJECT_NAME Engine)
 
-project(${PROJECT_NAME})
+project(${ENGINE_PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -17,41 +17,23 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib_external)
 
-#Project Files
-add_executable(${PROJECT_NAME} main.cpp
-        include/WindowProperties.h
-        include/SceneManager.h
-        include/Scene.h
-        include/Scenes/PlayingScene.h
-        include/Scenes/MainMenuScene.h
-        src/SceneManager.cpp
-        src/Scene.cpp
-        src/Scenes/PlayingScene.cpp
-        src/Scenes/MainMenuScene.cpp
-        include/SnakeGame.h
-        src/SnakeGame.cpp
-        include/Components/Engine/Transform.h
-        include/Components/Engine/SpriteRenderer.h
-        include/SnakeEntity.h
-        src/SnakeEntity.cpp
-        include/Components/Engine/PlayerInput.h
-        include/Components/CustomComponent/PlayerMovement.h
-        include/Entity.h
-        include/Components/Engine/BoxCollider.h
-        include/Apple.h
-        src/Apple.cpp
-        include/Components/Engine/Component.h
-        src/Entity.cpp
-        include/Components/CustomComponent/CustomComponent.h
-        include/Components/Engine/ScriptableComponent.h
+# Define the Engine library
+add_library(${ENGINE_PROJECT_NAME} STATIC
+        engine/include/WindowProperties.h
+        engine/include/Engine.h
+        engine/include/SceneManager.h
+        engine/include/Scene.h
+        engine/include/Entity.h
+        
+        engine/src/Engine.cpp
+        engine/src/SceneManager.cpp
+        engine/src/Scene.cpp
+        engine/src/Entity.cpp
 )
 
-target_link_libraries(${PROJECT_NAME}
-        PRIVATE
-        raylib
-)
+# Link libraries
+target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE raylib)
 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-
-# Include Vendor Libraries
-target_include_directories(${PROJECT_NAME} PRIVATE vendor/entt/include)
+# Include directories
+target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE engine/include)
+target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE include engine/vendor/entt/include)
