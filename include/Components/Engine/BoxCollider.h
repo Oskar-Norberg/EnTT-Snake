@@ -14,26 +14,24 @@
 namespace Components{
     struct BoxCollider : public Component
     {
-        explicit BoxCollider(Game::Entity* entity, Rectangle rectangle) : collider(rectangle), Component(entity) {}
-        Rectangle collider;
+        explicit BoxCollider(Game::Entity* entity) : Component(entity) {}
 
         // TODO: this function is going to be the slowest thing ever
         // TODO: It shouldn't really be here either? Maybe in a physics class?
         bool CheckCollision(const BoxCollider& other) const
         {
-            Vector2 position = entity_->GetComponent<Transform>()->position;
-            Vector2 otherPosition = other.entity_->GetComponent<Transform>()->position;
+            auto* transform = entity_->GetComponent<Transform>();
+            Vector2 position = transform->position;
+            float colliderSize = transform->scale;
 
-            Rectangle collider = this->collider;
-            Rectangle otherCollider = other.collider;
+            auto* otherTransform = other.entity_->GetComponent<Transform>();
+            Vector2 otherPosition = otherTransform->position;
+            float otherColliderSize = otherTransform->scale;
 
-            collider.x = position.x;
-            collider.y = position.y;
-
-            otherCollider.x = otherPosition.x;
-            otherCollider.y = otherPosition.y;
+            Rectangle collider = Rectangle{position.x, position.y, colliderSize, colliderSize};
+            Rectangle otherCollider = Rectangle{otherPosition.x, otherPosition.y, otherColliderSize, otherColliderSize};
             
-            return CheckCollisionRecs(collider, other.collider);
+            return CheckCollisionRecs(collider, otherCollider);
         }
     };
 }

@@ -17,6 +17,7 @@ namespace Components
             // TODO: Is there any way to get rid of this ass-path?
             texture_ = LoadTexture("../assets/builtin/textures/checkers.png");
         }
+        
         ~SpriteRenderer()
         {
             
@@ -24,7 +25,9 @@ namespace Components
 
         void Render(Transform transform)
         {
-            DrawTextureEx(texture_, transform.position, transform.rotation, transform.scale, WHITE);
+            // TODO: Add support for non uniform scaling
+            Rectangle rectangle = Rectangle{transform.position.x, transform.position.y, transform.scale, transform.scale};
+            DrawTextureRec(texture_, rectangle, transform.position, WHITE);
         }
         
         Texture2D texture_;
