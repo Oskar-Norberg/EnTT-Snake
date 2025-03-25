@@ -13,16 +13,16 @@
 
 namespace Snake
 {
-    SnakeGame::SnakeGame() : states_(), stateMachine_()
+    SnakeGame::SnakeGame() : states_(), sceneManager_()
     {
         InitWindow(Window::WINDOW_WIDTH, Window::WINDOW_HEIGHT, Window::WINDOW_TITLE);
 
         states_.push_back(new Scenes::MainMenuScene());
         states_.push_back(new Scenes::PlayingScene());
 
-        stateMachine_.AddScenes(states_);
-        // TODO: Temporarily sets state to playing state
-        stateMachine_.SwitchScene(typeid(Scenes::PlayingScene));
+        sceneManager_.AddScenes(states_);
+        // TODO: Temporarily start in scene playing
+        sceneManager_.SwitchScene(typeid(Scenes::PlayingScene));
     }
 
     SnakeGame::~SnakeGame()
@@ -42,7 +42,7 @@ namespace Snake
             BeginDrawing();
             ClearBackground(RAYWHITE);
 
-            stateMachine_.Update();
+            sceneManager_.Update();
             
             EndDrawing();
         }

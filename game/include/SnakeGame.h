@@ -21,7 +21,7 @@ namespace Snake
         
     private:
         std::vector<Scenes::Scene*> states_;
-        Scenes::SceneManager stateMachine_;
+        Scenes::SceneManager sceneManager_;
     };
 }
 

@@ -5,10 +5,11 @@
 #ifndef BOXCOLLIDER_H
 #define BOXCOLLIDER_H
 
+#include <raylib.h>
+
 #include "Entity.h"
 
 #include "Transform.h"
-#include "../../../cmake-build-debug/_deps/raylib_external-src/src/raylib.h"
 #include "Components/Engine/Component.h"
 
 namespace Components{

@@ -18,15 +18,10 @@ namespace Scenes
     public:
         SceneManager() = default;
         ~SceneManager() = default;
-
-        void AddScene(Scene* scene);
-        void AddScenes(const std::vector<Scene*>& scenes);
-        void SwitchScene(const std::type_index& type);
+        
+        void EnterScene(Scene* scene);
         void Update();
     private:
-        std::pmr::unordered_map<std::type_index, Scene*> scene_map;
-        void EnterScene(Scene* scene);
-
         Scene* current_scene_;
     };
 }
