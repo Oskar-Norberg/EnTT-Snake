@@ -22,8 +22,8 @@ namespace Components_Custom
         virtual void OnDestroy(){}
         
         virtual void OnUpdate(float deltaTime) {}
-        
-        virtual void OnCollision(entt::entity other) {}
+
+        virtual void OnCollision(Game::Entity* entity) {}
 
         void SetEntity(Game::Entity* entity)
         {

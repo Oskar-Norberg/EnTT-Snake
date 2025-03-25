@@ -16,6 +16,7 @@ namespace Components
     {
     public:
         Component(Game::Entity* entity) : entity_(entity) {}
+        Game::Entity* GetEntity() const { return entity_; }
     protected:
         Game::Entity* entity_;
     };

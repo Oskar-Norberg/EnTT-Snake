@@ -74,7 +74,7 @@ namespace Scenes
                     if (!scriptable.IsInstantiated())
                         continue;
                     
-                    scriptable.OnCollision(otherEntity);
+                    scriptable.OnCollision(otherBoxCollider.GetEntity());
                 }
             }
         }

@@ -27,7 +27,7 @@ namespace Components
             transform_->position.y += playerInput_->direction_.y * speed_ * deltaTime;
         }
 
-        void OnCollision(entt::entity other) override
+        void OnCollision(Game::Entity* other) override
         {
             std::cout << "Collision detected" << std::endl;
         }
