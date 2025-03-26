@@ -54,6 +54,7 @@ add_executable(${GAME_PROJECT_NAME} game/main.cpp
         game/src/Scenes/PlayingScene.cpp
         game/src/Apple.cpp
         game/src/SnakeEntity.cpp
+        game/include/Components/MoveOnCollision.h
 )
 
 # Import raylib to Game - Needed for Textures

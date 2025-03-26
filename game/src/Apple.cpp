@@ -4,6 +4,7 @@
 
 #include "Apple.h"
 
+#include "Components/MoveOnCollision.h"
 #include "Components/Engine/BoxCollider.h"
 #include "Components/Engine/SpriteRenderer.h"
 
@@ -16,5 +17,6 @@ namespace Game
         
         AddComponent<Components::SpriteRenderer>();
         AddComponent<Components::BoxCollider>();
+        AddComponent<MoveOnCollision>();
     }
 }
