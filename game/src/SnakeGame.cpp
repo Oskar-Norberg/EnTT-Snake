@@ -13,7 +13,7 @@ namespace Snake
     {
         playing_scene_ = new Scenes::PlayingScene();
         
-        engine_ = Core::Engine();
+        // engine_ = Core::Engine();
         engine_.SetScene(playing_scene_);
     }
 

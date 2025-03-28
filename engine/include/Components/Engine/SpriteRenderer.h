@@ -5,7 +5,7 @@
 #ifndef SPRITERENDERER_H
 #define SPRITERENDERER_H
 
-#include "raylib.h"
+#include <raylib.h>
 #include "Transform.h"
 
 namespace Components

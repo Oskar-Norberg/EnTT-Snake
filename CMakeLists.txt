@@ -36,6 +36,8 @@ add_library(${ENGINE_PROJECT_NAME} STATIC
         engine/include/Vector2.h
         engine/src/Components/Engine/BoxCollider.cpp
         engine/src/Components/Engine/SpriteRenderer.cpp
+        engine/include/Logger.h
+        engine/src/Logger.cpp
 )
 
 # Include Raylib in Engine
@@ -43,6 +45,14 @@ target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE raylib)
 
 # Engine include directories
 target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC engine/include engine/vendor/entt/include)
+# Include spdlog in Engine
+# Add spdlog static-library
+target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/engine/vendor/spdlog/libspdlog.a)
+
+target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE
+        engine/include
+        engine/vendor/spdlog/include
+)
 
 # Game Executable
 add_executable(${GAME_PROJECT_NAME} game/main.cpp
