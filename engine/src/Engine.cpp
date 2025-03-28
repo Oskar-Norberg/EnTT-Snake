@@ -4,22 +4,26 @@
 
 #include "Engine.h"
 
+#include "Logger.h"
+#include <raylib.h>
 #include "WindowProperties.h"
-#include "raylib.h"
 
 namespace Core
 {
     Engine::Engine() : sceneManager_()
     {
+        Logging::Logger::Init();
         InitWindow(Window::WINDOW_WIDTH, Window::WINDOW_HEIGHT, Window::WINDOW_TITLE);
     }
 
     Engine::~Engine()
     {
+        Logging::Logger::Cleanup();
     }
 
     void Engine::SetScene(Scenes::Scene* scene)
     {
+        RNGO_LOG_INFO(("Entering scene: " + std::string(typeid(scene).name())).c_str());
         sceneManager_.EnterScene(scene);
     }
 
