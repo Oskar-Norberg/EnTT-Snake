@@ -28,10 +28,10 @@ namespace Logging
 
     void Logger::Cleanup()
     {
+        LogExit();
+
         file_sink_ = nullptr;
         logger_ = nullptr;
-        
-        LogExit();
     }
 
     std::shared_ptr<spdlog::logger> Logger::GetLogger()

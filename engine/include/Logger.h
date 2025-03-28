@@ -6,6 +6,15 @@
 #define LOGGER_H
 
 #include <memory>
+
+// Exclude some Windows headers which caused conflict with raylib
+#if defined(_WIN32)           
+    #define NOGDI
+    #define NOUSER
+    #define WIN32_LEAN_AND_MEAN
+#endif
+
+
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/daily_file_sink.h>
 
