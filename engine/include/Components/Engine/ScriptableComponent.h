@@ -21,7 +21,6 @@ namespace Components
         std::function<void()> OnDestroy;
         std::function<void(float deltaTime)> OnUpdate;
 
-        // TODO: Find a way to pass the game entity wrapper instead of the entt entity
         std::function<void(Game::Entity* other)> OnCollision;
         
         explicit ScriptableComponent(Game::Entity* entity) : Component(entity), component_(nullptr)

@@ -23,6 +23,7 @@ namespace Core
 
     void Engine::SetScene(Scenes::Scene* scene)
     {
+        // TODO: Add scene names for logging. Temporarily just get typeid name.
         RNGO_LOG_INFO(("Entering scene: " + std::string(typeid(scene).name())).c_str());
         sceneManager_.EnterScene(scene);
     }
